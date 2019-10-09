@@ -1,0 +1,56 @@
+.lf-component {
+    width: 30%;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    display: flex;
+    justify-content: center;
+}
+.lf-container {
+    width: 80%;
+}
+.lf-header {
+    width:100%; 
+    margin-top:4%;
+    font-size: 1.4rem;
+    text-align:center;
+}
+.lf-header  label{
+    margin: 0;
+}
+.lf-header-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #41B883;
+}
+.lf-header-subtitle {
+    font-size:1.1rem;
+}
+.lf-form-container {
+    display:flex;
+    justify-content:center;
+}
+.lf-form {
+    width: 100%;
+    height: 100%;
+}
+.lf-forgot-password {
+    width:100%; 
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    color: #707070;
+    margin-bottom: 7%;
+}
+.lf-forgot-password:hover {
+    color: #41B883;
+}
+.lf-error-container {
+    margin-top: 4%;
+    display: flex;
+    justify-content: center;
+}
+.lf-error-container span {
+    color: red;
+    font-size: 1.1rem;
+}

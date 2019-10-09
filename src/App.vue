@@ -20,6 +20,13 @@ export default {
           .catch(routerErr => {
             console.log("Handle router error:", routerErr)
           })
+
+      if(this.accessToken && this.$route.name === 'login')
+        this.$router
+          .push("app")
+          .catch(routerErr => {
+            console.log("Handle router error:", routerErr)
+          })
     }
 }
 </script>
