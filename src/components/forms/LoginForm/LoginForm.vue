@@ -66,7 +66,7 @@ export default {
                 this.$refs.loginButton.startLoading()
                 const formData = new FormData(e.target)
 
-                this.$http.post(process.env.VUE_APP_LOGIN_PRODUCTION_PATH, {
+                this.$http.post(process.env.VUE_APP_PRODUCTION_PATH + '/login', {
                         email: formData.get('userEmail'),
                         password: formData.get('userPassword')
                     })
