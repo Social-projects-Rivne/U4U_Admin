@@ -23,5 +23,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import "LoginButton.scss";
+    @import "login-button.scss";
 </style>

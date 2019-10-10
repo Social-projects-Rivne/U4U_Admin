@@ -33,6 +33,9 @@ export default {
     methods: {
         validatePassword: function(event, message)
         {
+            this.isValid = true
+            this.errorMessage = null
+
             if(message)
             {
                 this.isValid = false
@@ -43,11 +46,6 @@ export default {
                 this.isValid = false
                 this.errorMessage = "Password cannot be empty!"
             }
-            else
-            {
-                this.isValid = true
-                this.errorMessage = null
-            }
 
             return this.isValid
         }
@@ -56,5 +54,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import "UserPasswordInput.scss";
+    @import "user-password-input.scss";
 </style>
