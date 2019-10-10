@@ -60,6 +60,9 @@ router.beforeEach(async (to, from, next) => {
         if (to.matched.some(record => record.meta.requiresAuth)) {
             next('/login')
         } else if(to.matched.some(record => record.meta.guest)) {
+            if (to.name === "home") {
+                next('/login')
+            }
             next()
         }
     }
