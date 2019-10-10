@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import LoginForm from '../../components/forms/LoginForm/LoginForm.vue'
+import LoginForm from '../../components/forms/login-form/login-form.vue'
 
 export default {
     components: {
@@ -15,5 +15,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import "LoginPage.scss";
+    @import "login-page.scss";
 </style>

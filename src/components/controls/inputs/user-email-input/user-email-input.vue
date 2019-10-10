@@ -33,21 +33,26 @@ export default {
     methods: {
         validateEmail: function(event, message)
         {
-            if(message)
+            this.isValid = true
+            this.errorMessage = null
+            const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            if (message)
             {
                 this.isValid = false
                 this.errorMessage = message
             }
-            else if(!this.email)
+            else if (!this.email)
             {
                 this.isValid = false
                 this.errorMessage = "Email cannot be empty!"
             }
-            else
+            if (!pattern.test(this.email))
             {
-                this.isValid = true
-                this.errorMessage = null
+                this.isValid = false
+                this.errorMessage = "Wrong email format!"
             }
+            
 
             return this.isValid
         }
@@ -56,5 +61,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import "UserEmailInput.scss";
+    @import "user-email-input.scss";
 </style>

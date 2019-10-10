@@ -38,9 +38,11 @@
 </template>
 
 <script>
-import UserEmailInput from '../../controls/inputs/UserEmailInput/UserEmailInput.vue'
-import UserPasswordInput from '../../controls/inputs/UserPasswordInput/UserPasswordInput.vue'
-import LoginButton from '../../controls/buttons/LoginButton/LoginButton.vue'
+import UserEmailInput from '../../controls/inputs/user-email-input/user-email-input.vue'
+import UserPasswordInput from '../../controls/inputs/user-password-input/user-password-input.vue'
+import LoginButton from '../../controls/buttons/login-button/login-button.vue'
+import { TokenService } from '../../../services/token.service.js'
+import ApiService from '../../../services/api.service.js'
 
 export default {
     data: function() {
@@ -55,7 +57,7 @@ export default {
     },
     methods:
     {
-        submitForm(e) {
+        submitForm: async function(e) {
             e.preventDefault()
             this.formErrorMsg = null
 
@@ -66,31 +68,31 @@ export default {
                 this.$refs.loginButton.startLoading()
                 const formData = new FormData(e.target)
 
-                this.$http.post(process.env.VUE_APP_PRODUCTION_PATH + '/login', {
-                        email: formData.get('userEmail'),
-                        password: formData.get('userPassword')
-                    })
-                    .then(response => {
-                        this.$refs.loginButton.endLoading()
+                const body = {
+                    "email": formData.get('userEmail'),
+                    "password": formData.get('userPassword')
+                }
 
-                        const accessToken = response.body.accessToken
-                        const refreshToken = response.body.refreshToken
-                        localStorage.setItem('accessToken', accessToken)
-                        localStorage.setItem('refreshToken', refreshToken)
+                try {
+                    const response = await ApiService.post('/login', body);
 
-                        this.$router
-                            .push("app")
-                            .catch(routerErr => {
-                                console.log("Handle router error:", routerErr)
-                            })
-                    }, error => {
-                        this.$refs.loginButton.endLoading()
-                        this.handleLoginErrors(error.body.errors)
-                    })
+                    TokenService.saveToken(response.accessToken)
+                    TokenService.saveRefreshToken(response.refreshToken)
+
+                    this.$router
+                        .push("app")
+                        .catch(routerErr => {
+                            console.log("Handle router error:", routerErr)
+                        })
+                } catch (errors) {
+                    this.$refs.loginButton.endLoading()
+                    this.handleLoginErrors(JSON.parse(errors.message))
+                }
             }
         },
-        handleLoginErrors(errors)
+        handleLoginErrors(data)
         {
+            const { errors } = data
             for(let i = 0; i < errors.length; i++)
             {
                 switch(errors[i].param)
@@ -119,5 +121,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import "LoginForm.scss";
+    @import "login-form.scss";
 </style>
