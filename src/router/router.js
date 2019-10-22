@@ -4,19 +4,19 @@ import Home from '../pages/home-page/home-page.vue'
 import AppPage from '../pages/app-page/app-page.vue'
 import Login from '../pages/login-page/login-page.vue'
 import recoveryPassword from '../pages/recovery-password-page/recovery-password-page.vue'
+import Dashboard from '../pages/dashboard-page/dashboard-page.vue'
 import { TokenService } from '../services/token.service.js'
-
 
 Vue.use(VueRouter)
 
 const router = new VueRouter({
     mode: 'history',
     routes: [
-        { 
+        {
             path: '/',
             name: 'home',
             component: Home,
-            meta: { 
+            meta: {
                 guest: true
             }
         },
@@ -24,23 +24,31 @@ const router = new VueRouter({
             path: '/app',
             name: 'app',
             component: AppPage,
-            meta: { 
+            meta: {
                 requiresAuth: true
             }
         },
-        { 
+        {
             path: '/login',
-            name: 'login', 
+            name: 'login',
             component: Login,
-            meta: { 
+            meta: {
                 guest: true
-            } 
+            }
         },
         {
             path: '/recovery-password',
             name: 'recoveryPassword',
             component: recoveryPassword,
-            meta: { 
+            meta: {
+                guest: true
+            }
+        },
+        {
+            path: '/dashboard',
+            name: 'dashboard',
+            component: Dashboard,
+            meta: {
                 guest: true
             }
         }
@@ -53,14 +61,14 @@ router.beforeEach(async (to, from, next) => {
 
         if (to.matched.some(record => record.meta.requiresAuth)) {
             next()
-        } else if(to.matched.some(record => record.meta.guest)) {
+        } else if (to.matched.some(record => record.meta.guest)) {
             next('/app')
         }
     } catch (error) {
         if (to.matched.some(record => record.meta.requiresAuth)) {
             next('/login')
-        } else if(to.matched.some(record => record.meta.guest)) {
-            if (to.name === "home") {
+        } else if (to.matched.some(record => record.meta.guest)) {
+            if (to.name === 'home') {
                 next('/login')
             }
             next()
