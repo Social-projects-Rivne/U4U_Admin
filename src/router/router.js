@@ -3,9 +3,10 @@ import VueRouter from 'vue-router'
 import Home from '../pages/home-page/home-page.vue'
 import AppPage from '../pages/app-page/app-page.vue'
 import Login from '../pages/login-page/login-page.vue'
-import recoveryPassword from '../pages/recovery-password-page/recovery-password-page.vue'
 import Dashboard from '../pages/dashboard-page/dashboard-page.vue';
 import BannedUsers from '../pages/app-banned-users';
+import RecoveryPassword from '../pages/recovery-password-page/recovery-password-page.vue'
+import AccessDeniedPage from '../pages/403-page/403-page.vue'
 import { TokenService } from '../services/token.service.js'
 
 Vue.use(VueRouter)
@@ -38,14 +39,6 @@ const router = new VueRouter({
             }
         },
         {
-            path: '/recovery-password',
-            name: 'recoveryPassword',
-            component: recoveryPassword,
-            meta: {
-                guest: true
-            }
-        },
-        {
             path: '/dashboard',
             name: 'dashboard',
             component: Dashboard,
@@ -58,9 +51,19 @@ const router = new VueRouter({
             name: 'baned-users',
             component: BannedUsers,
             meta: {
+            component: RecoveryPassword,
+            meta: { 
                 guest: true
             }
-        }
+        },
+        { 
+            path: '/403',
+            name: '403',
+            component: AccessDeniedPage,
+            meta: { 
+                requiresAuth: true
+            }
+        },
     ]
 })
 
