@@ -61,6 +61,7 @@ export default {
             e.preventDefault()
             this.formErrorMsg = null
 
+            const errorEmailOrPassMsg = "Login or password is incorrect. Plese, try again.";
             const emailIsValid = this.$refs.userEmailInput.validateEmail()
             const passIsValid = this.$refs.userPasswordInput.validatePassword()
             if(emailIsValid && passIsValid)
@@ -86,26 +87,21 @@ export default {
                         })
                 } catch (errors) {
                     this.$refs.loginButton.endLoading()
-                    this.handleLoginErrors(JSON.parse(errors.message))
+                    this.handleLoginErrors(JSON.parse(errors.message), errorEmailOrPassMsg)
                 }
+            } else {
+                this.formErrorMsg = errorEmailOrPassMsg;
             }
         },
-        handleLoginErrors(data)
+        handleLoginErrors(data, msg)
         {
             const { errors } = data
             for(let i = 0; i < errors.length; i++)
             {
-                switch(errors[i].param)
-                {
-                    case 'email':
-                        this.$refs.userEmailInput.validateEmail(null, errors[i].msg)
-                        break;
-                    case 'password':
-                        this.$refs.userPasswordInput.validatePassword(null, errors[i].msg)
-                        break;
-                    default:
-                        this.formErrorMsg = errors[i].msg
-                        break;
+                if(errors[i].param === "email" || errors[i].param === "password") {
+                    this.formErrorMsg = msg
+                } else {
+                    this.formErrorMsg = errors[i].msg
                 }
             }
         },
