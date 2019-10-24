@@ -47,7 +47,7 @@ export default {
                 this.isValid = false
                 this.errorMessage = "Email cannot be empty!"
             }
-            if (!pattern.test(this.email))
+            else if (!pattern.test(this.email))
             {
                 this.isValid = false
                 this.errorMessage = "Wrong email format!"
