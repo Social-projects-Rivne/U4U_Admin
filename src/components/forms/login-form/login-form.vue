@@ -41,8 +41,7 @@
 import UserEmailInput from '../../controls/inputs/user-email-input/user-email-input.vue'
 import UserPasswordInput from '../../controls/inputs/user-password-input/user-password-input.vue'
 import LoginButton from '../../controls/buttons/login-button/login-button.vue'
-import { TokenService } from '../../../services/token.service.js'
-import ApiService from '../../../services/api.service.js'
+import AuthService from '../../../services/auth.service.js'
 
 export default {
     data: function() {
@@ -67,22 +66,24 @@ export default {
             if(emailIsValid && passIsValid)
             {
                 const formData = new FormData(e.target)
-                const body = {
-                    "email": formData.get('userEmail'),
-                    "password": formData.get('userPassword')
-                }
 
                 try {
-                    const response = await ApiService.post('/login', body);
+                    const res = await AuthService.login(formData.get('userEmail'), formData.get('userPassword'))
+                    
+                    if(res) {
+                        this.$router
+                            .push("app")
+                            .catch(routerErr => {
+                                console.log("Handle router error:", routerErr)
+                            })
+                    } else {
+                        //TODO: REMOVE THIS WORKEROUD AFTER PREW PL WAS MERGED
+                         const errorsObj = {
+                            errors : [{ msg: "Cant`login" }]
+                        }
 
-                    TokenService.saveToken(response.accessToken)
-                    TokenService.saveRefreshToken(response.refreshToken)
-
-                    this.$router
-                        .push("app")
-                        .catch(routerErr => {
-                            console.log("Handle router error:", routerErr)
-                        })
+                        throw new Error(JSON.stringify(errorsObj))
+                    }
                 } catch (errors) {
                     this.showLoginError()
                 }
