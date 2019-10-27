@@ -7,7 +7,6 @@
 
 <script>
 import LogoutButton from '../../components/controls/buttons/logout-button/logout-button.vue';
-import apiServise from '../../services/api.service';
 
 export default {
     components: {
