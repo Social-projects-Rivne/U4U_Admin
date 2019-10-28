@@ -63,11 +63,10 @@ export default {
 
             const emailIsValid = this.$refs.userEmailInput.validateEmail()
             const passIsValid = this.$refs.userPasswordInput.validatePassword()
+            this.$refs.loginButton.startLoading()
             if(emailIsValid && passIsValid)
             {
-                this.$refs.loginButton.startLoading()
                 const formData = new FormData(e.target)
-
                 const body = {
                     "email": formData.get('userEmail'),
                     "password": formData.get('userPassword')
@@ -85,29 +84,15 @@ export default {
                             console.log("Handle router error:", routerErr)
                         })
                 } catch (errors) {
-                    this.$refs.loginButton.endLoading()
-                    this.handleLoginErrors(JSON.parse(errors.message))
+                    this.showLoginError()
                 }
+            } else {
+                this.showLoginError()
             }
         },
-        handleLoginErrors(data)
-        {
-            const { errors } = data
-            for(let i = 0; i < errors.length; i++)
-            {
-                switch(errors[i].param)
-                {
-                    case 'email':
-                        this.$refs.userEmailInput.validateEmail(null, errors[i].msg)
-                        break;
-                    case 'password':
-                        this.$refs.userPasswordInput.validatePassword(null, errors[i].msg)
-                        break;
-                    default:
-                        this.formErrorMsg = errors[i].msg
-                        break;
-                }
-            }
+        showLoginError() {
+            this.$refs.loginButton.endLoading()
+            this.formErrorMsg = "Login or password is incorrect. Plese, try again.";
         },
         forgotPassword() {
             this.$router
