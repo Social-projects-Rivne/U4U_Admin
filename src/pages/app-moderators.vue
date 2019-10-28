@@ -9,156 +9,49 @@
 <script>
     import AppLayout from "@/components/dashboard/app-layout";
     import AppTable from "@/components/table/table-layout.vue";
+    import ModeratorService from '../services/moderators.service';
 
 
     export default {
-        name: "app-baned-users",
+        name: "app-moderators",
         data() {
           return {
               cols: [
                   {
-                      id: 'counter',
-                      label: '#',
+                      id: 'id',
+                      label: 'Id',
                   },
                   {
-                      id: 'nickName',
+                      id: 'nickname',
                       label: 'Nick name',
                   },
                   {
-                      id: 'bannedBy',
-                      label: 'Banned by',
+                      id: 'name',
+                      label: 'Name',
                   },
                   {
-                      id: 'dateFrom',
-                      label: 'From',
+                      id: 'surname',
+                      label: 'Surname',
                   },
                   {
-                      id: 'dateTo',
-                      label: 'To',
+                      id: 'email',
+                      label: 'Email',
                   },
-                  {
-                      id: 'reason',
-                      label: 'Reason',
-                  }
               ],
               rows: []
           }
         },
         methods: {
-          createData(data) {
-           //const { nickName, bunnedBy, to reason } = data;
-              return [
-                  {
-                      id: 'customId',
-                      counter: '1',
-                      nickName: 'Jerry',
-                      bannedBy: 'Tom Jenkins',
-                      dateFrom: '2019-01-01',
-                      dateTo: '2019-01-02',
-                      reason: 'some reason'
-                  }
-              ]
-          },
+          
         },
         created() {
-            this.rows = [
-                {
-                    id: 'customId',
-                    counter: '1',
-                    nickName: 'Jerry',
-                    bannedBy: 'Tom Jenkins',
-                    dateFrom: '2019-01-01',
-                    dateTo: '2019-01-02',
-                    reason: 'some reason'
-                },
-                 {
-                    id: 'customId1',
-                    counter: '2',
-                    nickName: 'Jerry',
-                    bannedBy: 'Tom Jenkins',
-                    dateFrom: '2019-01-01',
-                    dateTo: '2019-01-02',
-                    reason: 'some reason'
-                },
-                 {
-                    id: 'customId2',
-                    counter: '3',
-                    nickName: 'Jerry',
-                    bannedBy: 'Tom Jenkins',
-                    dateFrom: '2019-01-01',
-                    dateTo: '2019-01-02',
-                    reason: 'some reason'
-                }, {
-                    id: 'customId3',
-                    counter: '4',
-                    nickName: 'Jerry',
-                    bannedBy: 'Tom Jenkins',
-                    dateFrom: '2019-01-01',
-                    dateTo: '2019-01-02',
-                    reason: 'some reason'
-                },
-                 {
-                    id: 'customId4',
-                    counter: '5',
-                    nickName: 'Jerry',
-                    bannedBy: 'Tom Jenkins',
-                    dateFrom: '2019-01-01',
-                    dateTo: '2019-01-02',
-                    reason: 'some reason'
-                },
-                 {
-                    id: 'customId5',
-                    counter: '6',
-                    nickName: 'Jerry',
-                    bannedBy: 'Tom Jenkins',
-                    dateFrom: '2019-01-01',
-                    dateTo: '2019-01-02',
-                    reason: 'some reason'
-                },
-                 {
-                    id: 'customId6',
-                    counter: '7',
-                    nickName: 'Jerry',
-                    bannedBy: 'Tom Jenkins',
-                    dateFrom: '2019-01-01',
-                    dateTo: '2019-01-02',
-                    reason: 'some reason'
-                },
-                 {
-                    id: 'customId7',
-                    counter: '8',
-                    nickName: 'Jerry',
-                    bannedBy: 'Tom Jenkins',
-                    dateFrom: '2019-01-01',
-                    dateTo: '2019-01-02',
-                    reason: 'some reason'
-                },
-                 {
-                    id: 'customId8',
-                    counter: '1',
-                    nickName: 'Jerry',
-                    bannedBy: 'Tom Jenkins',
-                    dateFrom: '2019-01-01',
-                    dateTo: '2019-01-02',
-                    reason: 'some reason'
-                }, {
-                    id: 'customId9',
-                    counter: '1',
-                    nickName: 'Jerry2',
-                    bannedBy: 'Tom Jenkins',
-                    dateFrom: '2019-01-01',
-                    dateTo: '2019-01-02',
-                    reason: 'some reason'
-                }, {
-                    id: 'customId10',
-                    counter: '1',
-                    nickName: 'Jerry',
-                    bannedBy: 'Tom Jenkins',
-                    dateFrom: '2019-01-01',
-                    dateTo: '2019-01-02',
-                    reason: 'some reason'
-                }
-            ]
+            ModeratorService.getAllModerators()
+            .then((moderators) => {
+                this.rows = moderators;
+            })
+            .catch((err) => {
+                throw new Error(err);
+            })
         },
         components: {
             AppLayout,

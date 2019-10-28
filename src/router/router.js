@@ -68,7 +68,6 @@ const router = new VueRouter({
             name: 'moderators',
             component: Moderators,
             meta: {
-                guest: true,
                 requiresAuth: true
             }
         }
