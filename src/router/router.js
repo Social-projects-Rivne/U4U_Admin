@@ -4,7 +4,8 @@ import Home from '../pages/home-page/home-page.vue'
 import AppPage from '../pages/app-page/app-page.vue'
 import Login from '../pages/login-page/login-page.vue'
 import recoveryPassword from '../pages/recovery-password-page/recovery-password-page.vue'
-import Dashboard from '../pages/dashboard-page/dashboard-page.vue'
+import Dashboard from '../pages/dashboard-page/dashboard-page.vue';
+import BannedUsers from '../pages/app-banned-users';
 import { TokenService } from '../services/token.service.js'
 
 Vue.use(VueRouter)
@@ -48,6 +49,14 @@ const router = new VueRouter({
             path: '/dashboard',
             name: 'dashboard',
             component: Dashboard,
+            meta: {
+                guest: true
+            }
+        },
+        {
+            path: '/baned-users',
+            name: 'baned-users',
+            component: BannedUsers,
             meta: {
                 guest: true
             }
