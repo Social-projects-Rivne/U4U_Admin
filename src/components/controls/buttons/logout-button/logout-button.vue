@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import LoginButtonVue from '../login-button/login-button.vue'
 import AuthService from '../../../../services/auth.service.js'
 
 export default {

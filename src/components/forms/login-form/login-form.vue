@@ -65,9 +65,8 @@ export default {
             this.$refs.loginButton.startLoading()
             if(emailIsValid && passIsValid)
             {
-                const formData = new FormData(e.target)
-
                 try {
+                    const formData = new FormData(e.target)
                     const res = await AuthService.login(formData.get('userEmail'), formData.get('userPassword'))
                     
                     if(res) {
@@ -77,12 +76,7 @@ export default {
                                 console.log("Handle router error:", routerErr)
                             })
                     } else {
-                        //TODO: REMOVE THIS WORKEROUD AFTER PREW PL WAS MERGED
-                         const errorsObj = {
-                            errors : [{ msg: "Cant`login" }]
-                        }
-
-                        throw new Error(JSON.stringify(errorsObj))
+                        this.showLoginError()
                     }
                 } catch (errors) {
                     this.showLoginError()
