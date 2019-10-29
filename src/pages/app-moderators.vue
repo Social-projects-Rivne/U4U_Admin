@@ -47,7 +47,13 @@
         created() {
             ModeratorService.getAllModerators()
             .then((moderators) => {
-                this.rows = moderators;
+                console.log(moderators);
+                const onlyModerators = moderators.filter((elem) => {
+                    if(elem.is_admin === false){
+                        return elem;
+                    }
+                })
+                this.rows = onlyModerators;
             })
             .catch((err) => {
                 throw new Error(err);
