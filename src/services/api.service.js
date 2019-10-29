@@ -14,6 +14,15 @@ const ApiService = {
         }
     },
 
+    async getBusinessUsers(offset, limit, transform = true) {
+        const { data } = await axios.get(`business?offset=${offset}&limit=${limit}`);
+        if(transform) {
+            return this._transformToBusinessTable(data);
+        } else {
+            return data;
+        }
+    },
+
     getHeaders(accessToken) {
         return {
             'Content-Type': 'application/json',
@@ -73,12 +82,18 @@ const ApiService = {
                 counter,
                 nickName,
                 email,
-                banEnd,
-                banStart,
+                banEnd: banEnd.substring(0,10),
+                banStart: banStart.substring(0,10),
                 bannedBy,
                 reason
             }
         })
+    },
+    _transformToBusinessTable(data) {
+        return data.map(e => {
+           const { name, surname, email, birth_day: birthDay } = e;
+           return { name, surname, email, birthDay };
+        });
     }
 }
 

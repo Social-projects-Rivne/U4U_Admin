@@ -55,8 +55,10 @@ export default {
         },
 
         prevPage() {
-            this.offset -= this.pageSize;
-            this.fetchData();
+            if(this.offset > this.pageSize) {
+                this.offset -= this.pageSize;
+                this.fetchData();
+            }
         },
 
         fetchData() {

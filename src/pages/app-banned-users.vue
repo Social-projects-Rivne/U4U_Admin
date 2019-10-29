@@ -2,7 +2,7 @@
   <app-layout>
    <app-table
             method="getBannedUsers"
-           :pageSize="pageSize"
+           :pageSize="1"
            :cols="cols"></app-table>
   </app-layout>
 </template>
@@ -16,8 +16,6 @@
         name: "app-baned-users",
         data() {
           return {
-              loading: true,
-              err: false,
               cols: [
                   {
                       id: 'counter',
@@ -48,10 +46,6 @@
                       label: 'Reason',
                   }
               ],
-              rows: [],
-              offset: 0,
-              limit: 1,
-              pageSize: 1,
           }
         },
         components: {
