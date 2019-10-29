@@ -1,16 +1,12 @@
 <template>
-    <div class="up-container">
+    <div class="user-password">
         <label><b>{{ label }}</b></label>
-        <br>
-        <span class="up-error" v-if="!isValid">{{ errorMessage }}</span>
         <input 
             type="password" 
             name="userPassword" 
-            class="up-input"
-            @blur="validatePassword"  
+            class="user-password-input"  
             v-model="password" 
             v-bind:placeholder="placeholder"
-            v-bind:class="!isValid ? 'up-invalid' : ''" 
         />
     </div>
 </template>
@@ -21,30 +17,19 @@ export default {
     {
         return {
             password: null,
-            errorMessage: null,
             isValid: true
         }
     },
     props: [
-        'passwordErrorMsg',
         'label',
         'placeholder'
     ],
     methods: {
-        validatePassword: function(event, message)
-        {
+        validatePassword: function() {
             this.isValid = true
-            this.errorMessage = null
 
-            if(message)
-            {
+            if(!this.password) {
                 this.isValid = false
-                this.errorMessage = message
-            }
-            else if(!this.password)
-            {
-                this.isValid = false
-                this.errorMessage = "Password cannot be empty!"
             }
 
             return this.isValid
