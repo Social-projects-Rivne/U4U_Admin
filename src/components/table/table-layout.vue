@@ -1,5 +1,8 @@
 <template>
     <main class="main">
+        <p v-if="loading">Loading...</p>
+        <p v-if="err">Something has gone terribly wrong</p>
+
         <div class="container">
             <table class="content-table">
                 <thead>
@@ -8,7 +11,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="row in (filteredList)" :key="row.id">
+                    <tr v-for="row in rows" :key="row.id">
                         <td v-for="col in cols" :key="col.id" >{{row[col.id]}}</td>
                     </tr>
                 </tbody>
@@ -28,35 +31,54 @@
 
 <script>
 
+    import api from '../../services/api.service';
 
 export default {
     name: "table-layout",
     props: {
-        cols:  Array,
-        rows: Array,
-        pageSize: { type: Number, default: 5 }
+        cols: Array,
+        pageSize: { type: Number, default: 2 },
+        method: String
     },
+
     data: () => ({
-        currentPage: 1
+        loading: true,
+        err: false,
+        rows: [],
+        offset: 0,
     }),
+
     methods: {
-        nextPage: function() {
-            if (this.currentPage * this.pageSize < this.rows.length)
-                this.currentPage++;
+        nextPage() {
+            this.offset += this.pageSize;
+            this.fetchData()
         },
-        prevPage: function() {
-            if (this.currentPage > 1) this.currentPage--;
+
+        prevPage() {
+            this.offset -= this.pageSize;
+            this.fetchData();
+        },
+
+        fetchData() {
+            api[this.method](this.offset, this.pageSize)
+                    .then(rows => {
+                        this.err = '';
+                        this.loading = '';
+                        if(rows.length > 0) {
+                            this.rows = rows
+                        } else {
+                            this.offset =- 1;
+                        }
+                    })
+                    .catch(err => {
+                        this.loading = '';
+                        this.err = err;
+                    })
         }
     },
-    computed: {
-        filteredList() {
-            return this.rows
-                .filter((row, index) => {
-                    let start = (this.currentPage - 1) * this.pageSize;
-                    let end = this.currentPage * this.pageSize;
-                    if (index >= start && index < end) return true;
-                });
-        }
+
+    created()  {
+      this.fetchData();
     },
 };
 </script>

@@ -54,15 +54,15 @@ const router = new VueRouter({
             }
         },
         {
-            path: '/baned-users',
-            name: 'baned-users',
+            path: '/banned',
+            name: 'banned',
             component: BannedUsers,
             meta: {
                 guest: true
             }
         }
     ]
-})
+});
 
 router.beforeEach(async (to, from, next) => {
     try {

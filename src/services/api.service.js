@@ -1,6 +1,18 @@
-import { TokenService } from './token.service.js'
+import { TokenService } from './token.service.js';
+let axiosDefaults = require('axios/lib/defaults');
+axiosDefaults.baseURL = 'http://localhost:8080/admin/api/';
+const axios = require('axios');
 
 const ApiService = {
+
+    async getBannedUsers(offset, limit, transform = true) {
+        const { data } = await axios.get(`bans?offset=${offset}&limit=${limit}`);
+        if(transform) {
+            return this._transformToBannedTable(data);
+        } else {
+            return data;
+        }
+    },
 
     getHeaders(accessToken) {
         return {
@@ -48,6 +60,25 @@ const ApiService = {
     async delete(resource) {
         const accessToken = await TokenService.checkToken()
         //TODO: delete
+    },
+
+    _transformToBannedTable(data) {
+        let counter = 0;
+        return data.map(e => {
+            counter++;
+            const { nickname: nickName, email,
+                ban: { ban_end: banEnd, ban_start: banStart, banned_by: bannedBy, reason  } } = e;
+
+            return {
+                counter,
+                nickName,
+                email,
+                banEnd,
+                banStart,
+                bannedBy,
+                reason
+            }
+        })
     }
 }
 

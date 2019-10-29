@@ -44,6 +44,12 @@ a {
     font-weight: bold;
 }
 
+.subList-item {
+    a {
+        color: #fff;
+    }
+}
+
 .row {
     display: flex;
 

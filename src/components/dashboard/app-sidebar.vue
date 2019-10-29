@@ -12,8 +12,16 @@
                 <li class="navList-heading">Users</li>
                 <li>
                     <ul class="subList subList">
-                        <li class="subList-item">Premium</li>
-                        <li class="subList-item">Banned</li>
+                        <li class="subList-item">
+                            <router-link to="/business">
+                                Premium
+                            </router-link>
+                        </li>
+                        <li class="subList-item">
+                            <router-link to="/banned">
+                                Banned
+                            </router-link>
+                        </li>
                     </ul>
                 </li>
             </ul>
