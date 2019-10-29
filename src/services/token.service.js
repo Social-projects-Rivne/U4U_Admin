@@ -16,7 +16,8 @@ const TokenService = {
             })
 
             if (response.ok) {
-                const { status } = await response.json()
+                const { status, admin } = await response.json()
+                console.log(status, admin);
 
                 if(status)
                     return accessToken
