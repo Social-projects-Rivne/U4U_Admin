@@ -1,10 +1,15 @@
 import RequestService from './request.service';
+import { TokenService } from './token.service';
 
 const Role = {
     async checkRole(){
         try{
-            const isAdmin = await RequestService.post('/role');
-            console.log(isAdmin.admin);
+            const token = await TokenService.getToken();
+            const headers = {
+                Authorization: token
+            }
+            const isAdmin = await RequestService.post('/role', null, headers);
+            console.log(`Admin : ${isAdmin.admin}`);
             return isAdmin.admin;
         }
         catch(error){
