@@ -1,9 +1,10 @@
-import ApiService from './api.service';
+import RequestService from './request.service';
 
 const Role = {
     async checkRole(){
         try{
-            const isAdmin = await ApiService.post('/role');
+            const isAdmin = await RequestService.post('/role');
+            console.log(isAdmin.admin);
             return isAdmin.admin;
         }
         catch(error){
