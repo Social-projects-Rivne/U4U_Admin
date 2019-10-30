@@ -51,8 +51,7 @@ const router = new VueRouter({
             name: 'dashboard',
             component: Dashboard,
             meta: {
-                guest: true,
-                requiresAuth: true
+                isAdmin: true
             }
         },
         {
@@ -60,7 +59,8 @@ const router = new VueRouter({
             name: 'baned-users',
             component: BannedUsers,
             meta: {
-                guest: true
+                guest: true,
+                requiresAuth: true
             }
         }
     ]
@@ -74,6 +74,13 @@ router.beforeEach(async (to, from, next) => {
             next()
         } else if (to.matched.some(record => record.meta.guest)) {
             next('/app')
+        } else if (to.matched.some(record => record.meta.isAdmin)){
+            if(await Role.checkRole() === true){
+                next();
+            }
+            else{
+                next('/app'); // TODO: in a future paste in next() page with gendalf becouse moderators have not access to some pages
+            }
         }
     } catch (error) {
         if (to.matched.some(record => record.meta.requiresAuth)) {
