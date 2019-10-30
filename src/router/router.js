@@ -69,7 +69,7 @@ const router = new VueRouter({
 router.beforeEach(async (to, from, next) => {
     try {
         await TokenService.checkToken()
-
+        
         if (to.matched.some(record => record.meta.requiresAuth)) {
             next()
         } else if (to.matched.some(record => record.meta.guest)) {
