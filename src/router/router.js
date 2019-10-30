@@ -6,6 +6,7 @@ import Login from '../pages/login-page/login-page.vue'
 import recoveryPassword from '../pages/recovery-password-page/recovery-password-page.vue'
 import Dashboard from '../pages/dashboard-page/dashboard-page.vue';
 import BannedUsers from '../pages/app-banned-users';
+import Role from '../services/check.role';
 import { TokenService } from '../services/token.service.js'
 
 Vue.use(VueRouter)
@@ -50,7 +51,8 @@ const router = new VueRouter({
             name: 'dashboard',
             component: Dashboard,
             meta: {
-                guest: true
+                guest: true,
+                requiresAuth: true
             }
         },
         {
