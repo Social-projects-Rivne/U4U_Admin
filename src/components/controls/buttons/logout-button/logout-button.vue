@@ -5,9 +5,7 @@
 </template>
 
 <script>
-import LoginButtonVue from '../login-button/login-button.vue'
-import { TokenService } from '../../../../services/token.service.js'
-import ApiService from '../../../../services/api.service.js'
+import AuthService from '../../../../services/auth.service.js'
 
 export default {
     data: function () {
@@ -27,24 +25,16 @@ export default {
             this.startLoading()
 
             try {
-                const { status } = await ApiService.post('/logout', {"accessToken": TokenService.getToken()})
+                await AuthService.logout()
 
-                if (!status) {
-                    throw new Error("Erorr status: " + status)
-                }
+                this.$router
+                    .push("login")
+                    .catch(routerErr => {
+                        console.log("Handle router error:", routerErr)
+                    })
+            } catch (errors) {
+                console.log("Handle logout errors: ", errors)
             }
-            catch(error) {
-                console.log("Handle logout errors: ", error)
-            }
-
-            TokenService.removeToken()
-            TokenService.removeRefreshToken()
-
-            this.$router
-                .push("login")
-                .catch(routerErr => {
-                    console.log("Handle router error:", routerErr)
-                })
         }
     }
 }
