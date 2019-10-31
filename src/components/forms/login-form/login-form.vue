@@ -91,7 +91,7 @@ export default {
         },
         forgotPassword() {
             this.$router
-                .push('recoveryPassword')
+                .push('recovery-password')
                 .catch(routerErr => {
                     console.log("Handle router error:", routerErr)
                 })

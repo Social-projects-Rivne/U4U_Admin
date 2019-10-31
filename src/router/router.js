@@ -39,6 +39,14 @@ const router = new VueRouter({
             }
         },
         {
+            path: '/recovery-password',
+            name: 'recoveryPassword',
+            component: RecoveryPassword,
+            meta: {
+                guest: true
+            }
+        },
+        {
             path: '/dashboard',
             name: 'dashboard',
             component: Dashboard,
@@ -50,8 +58,6 @@ const router = new VueRouter({
             path: '/baned-users',
             name: 'baned-users',
             component: BannedUsers,
-            meta: {
-            component: RecoveryPassword,
             meta: { 
                 guest: true
             }
@@ -77,7 +83,7 @@ router.beforeEach(async (to, from, next) => {
             next('/app')
         }
     } catch (error) {
-        if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (to.matched.some(record => record.meta.requiresAuth)) {           
             next('/login')
         } else if (to.matched.some(record => record.meta.guest)) {
             if (to.name === 'home') {
