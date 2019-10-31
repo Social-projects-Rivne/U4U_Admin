@@ -89,7 +89,7 @@ router.beforeEach(async (to, from, next) => {
             if (to.name === 'home') {
                 next('/login')
             }
-            next()
+            next();
         }
     }
 })
