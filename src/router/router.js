@@ -3,9 +3,10 @@ import VueRouter from 'vue-router'
 import Home from '../pages/home-page/home-page.vue'
 import AppPage from '../pages/app-page/app-page.vue'
 import Login from '../pages/login-page/login-page.vue'
-import recoveryPassword from '../pages/recovery-password-page/recovery-password-page.vue'
 import Dashboard from '../pages/dashboard-page/dashboard-page.vue';
 import BannedUsers from '../pages/app-banned-users';
+import RecoveryPassword from '../pages/recovery-password-page/recovery-password-page.vue'
+import AccessDeniedPage from '../pages/403-page/403-page.vue'
 import { TokenService } from '../services/token.service.js'
 
 Vue.use(VueRouter)
@@ -40,7 +41,7 @@ const router = new VueRouter({
         {
             path: '/recovery-password',
             name: 'recoveryPassword',
-            component: recoveryPassword,
+            component: RecoveryPassword,
             meta: {
                 guest: true
             }
@@ -57,10 +58,18 @@ const router = new VueRouter({
             path: '/baned-users',
             name: 'baned-users',
             component: BannedUsers,
-            meta: {
+            meta: { 
                 guest: true
             }
-        }
+        },
+        { 
+            path: '/403',
+            name: '403',
+            component: AccessDeniedPage,
+            meta: { 
+                requiresAuth: true
+            }
+        },
     ]
 })
 
@@ -74,7 +83,7 @@ router.beforeEach(async (to, from, next) => {
             next('/app')
         }
     } catch (error) {
-        if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (to.matched.some(record => record.meta.requiresAuth)) {           
             next('/login')
         } else if (to.matched.some(record => record.meta.guest)) {
             if (to.name === 'home') {
