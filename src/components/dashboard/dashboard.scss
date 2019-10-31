@@ -222,6 +222,9 @@ a {
             text-transform: capitalize;
             padding: 8px 30px;
             color: $color-sidebar-text;
+             a{
+                color: $color-sidebar-text;
+             }
 
             &:first-child {
                 padding-top: 15px;

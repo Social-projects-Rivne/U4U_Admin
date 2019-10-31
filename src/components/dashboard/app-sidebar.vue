@@ -45,7 +45,7 @@
                 <li class="navList-heading">Tools</li>
                 <li>
                     <ul class="subList subList">
-                        <li class="subList-item">Moderators</li>
+                        <li class="subList-item"><a href="http://localhost:8081/moderators">Moderators</a></li>
                         <li class="subList-item">Logs</li>
                     </ul>
                 </li>
@@ -59,4 +59,5 @@ export default {};
 
 <style lang="scss" scoped>
 @import "dashboard.scss";
+// if moderators --- display-none logs, moderators, if admin --- show moderators and logs
 </style>
