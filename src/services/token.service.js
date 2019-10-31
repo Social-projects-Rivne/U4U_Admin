@@ -39,7 +39,7 @@ const TokenService = {
         else
         {
             const errorsObj = {
-                errors : [{ mgs: "Can`t find access token" }]
+                errors : [{ msg: "Can`t find access token" }]
             }
 
             throw new Error(JSON.stringify(errorsObj))
@@ -101,7 +101,7 @@ const TokenService = {
         else
         {
             const errorsObj = {
-                errors : [{ mgs: "Can`t find refresh token" }]
+                errors : [{ msg: "Can`t find refresh token" }]
             }
 
             throw new Error(JSON.stringify(errorsObj))

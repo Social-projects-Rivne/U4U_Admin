@@ -1,14 +1,6 @@
 import { TokenService } from './token.service.js'
 
-const ApiService = {
-
-    getHeaders(accessToken) {
-        return {
-            'Content-Type': 'application/json',
-            'Accept-Type': 'application/json',
-            Authorization: accessToken ? accessToken : '',
-        }
-    },
+const RequestService = {
 
     async get(url) {
         try{
@@ -31,17 +23,11 @@ const ApiService = {
         }
     },
 
-    async post(url, body) {
+    async post(url, body, headers) {
         try {
-            let accessToken;
-            if(url !== "/login") {
-                accessToken = await TokenService.checkToken()
-            }
-
-        
             const response = await fetch(process.env.VUE_APP_PRODUCTION_PATH + url, {
                 method: 'POST',
-                headers: this.getHeaders(accessToken),
+                headers: headers,
                 body: JSON.stringify(body)
             })
 
@@ -67,4 +53,4 @@ const ApiService = {
     }
 }
 
-export default ApiService
+export default RequestService
