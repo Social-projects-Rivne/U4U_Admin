@@ -7,7 +7,9 @@ const RequestService = {
             const accessToken = await TokenService.checkToken();
             if(accessToken){
                 const response = await fetch(process.env.VUE_APP_PRODUCTION_PATH + url, {
-                    headers: this.getHeaders(accessToken)
+                    headers: {
+                        Authorization: accessToken
+                    }
                 });
 
                 if (response.ok) {
