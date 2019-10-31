@@ -53,7 +53,8 @@ const router = new VueRouter({
             name: 'dashboard',
             component: Dashboard,
             meta: {
-                isAdmin: true
+                isAdmin: true,
+                requiresAuth: true
             }
         },
         {

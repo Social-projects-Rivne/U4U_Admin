@@ -54,10 +54,11 @@
     </aside>
 </template>
 <script>
-export default {};
+
+export default {
+};
 </script>
 
 <style lang="scss" scoped>
 @import "dashboard.scss";
-// if moderators --- display-none logs, moderators, if admin --- show moderators and logs
 </style>
