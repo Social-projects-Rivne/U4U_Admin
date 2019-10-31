@@ -69,7 +69,7 @@ const router = new VueRouter({
             name: 'moderators',
             component: Moderators,
             meta: {
-                requiresAuth: true
+                isAdmin: true
             }
         },
         { 
