@@ -1,9 +1,9 @@
-import apiService from './api.service';
+import RequestService from './request.service';
 
 const moderatorService = {
     async getAllModerators(){
         try{
-            const response = await apiService.get('/api/moderators');
+            const response = await RequestService.get('/api/moderators');
             return response;
         }
         catch(error){
