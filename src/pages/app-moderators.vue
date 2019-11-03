@@ -47,7 +47,6 @@
         created() {
             ModeratorService.getAllModerators()
             .then((moderators) => {
-                console.log(moderators);
                 const onlyModerators = moderators.filter((elem) => {
                     if(elem.is_admin === false){
                         return elem;
