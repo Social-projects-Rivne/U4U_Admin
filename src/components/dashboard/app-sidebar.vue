@@ -45,7 +45,7 @@
                 <li class="navList-heading">Tools</li>
                 <li>
                     <ul class="subList subList">
-                        <li class="subList-item">Moderators</li>
+                        <li class="subList-item"><a :href="moderatorsLink">Moderators</a></li>
                         <li class="subList-item">Logs</li>
                     </ul>
                 </li>
@@ -54,7 +54,14 @@
     </aside>
 </template>
 <script>
-export default {};
+
+export default {
+    data: function(){
+        return{
+            moderatorsLink: 'http://localhost:8081/moderators'
+        }
+    }
+};
 </script>
 
 <style lang="scss" scoped>
