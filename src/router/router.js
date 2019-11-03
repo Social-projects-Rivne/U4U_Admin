@@ -4,8 +4,8 @@ import Home from '../pages/home-page/home-page.vue'
 import AppPage from '../pages/app-page/app-page.vue'
 import Login from '../pages/login-page/login-page.vue'
 import Dashboard from '../pages/dashboard-page/dashboard-page.vue';
-import BannedUsers from '../pages/app-banned-users';
 import Moderators from '../pages/app-moderators';
+import BannedUsers from '../pages/app-banned-users';
 import Role from '../services/check.role';
 import RecoveryPassword from '../pages/recovery-password-page/recovery-password-page.vue'
 import AccessDeniedPage from '../pages/403-page/403-page.vue'
@@ -17,96 +17,149 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
+
             path: '/',
             name: 'home',
             component: Home,
+
             meta: {
-                guest: true
+                guest: true,
+                admin: false,
+                moderator: false,
             }
         },
         {
             path: '/app',
             name: 'app',
             component: AppPage,
+
             meta: {
-                requiresAuth: true
+                guest: false,
+                admin: true,
+                moderator: true
             }
         },
         {
+
             path: '/login',
             name: 'login',
             component: Login,
+
             meta: {
-                guest: true
+                guest: true,
+                admin: false,
+                moderator: false
             }
         },
         {
             path: '/recovery-password',
             name: 'recoveryPassword',
             component: RecoveryPassword,
+
             meta: {
-                guest: true
+                guest: true,
+                admin: false,
+                moderator: false
             }
+
         },
         {
             path: '/dashboard',
             name: 'dashboard',
             component: Dashboard,
+
             meta: {
-                isAdmin: true,
-                requiresAuth: true
+                guest: false,
+                admin: true,
+                moderator: true
             }
         },
         {
             path: '/baned-users',
             name: 'baned-users',
             component: BannedUsers,
+
             meta: { 
-                guest: true
+                guest: false,
+                admin: true,
+                moderator: true
             }
         },
         {
             path: '/moderators',
             name: 'moderators',
             component: Moderators,
+
             meta: {
-                isAdmin: true
+                guest: false,
+                admin: true,
+                moderator: false
             }
         },
-        { 
+        {
             path: '/403',
             name: '403',
             component: AccessDeniedPage,
-            meta: { 
-                requiresAuth: true
+
+            meta: {
+                guest: false,
+                admin: false,
+                moderator: true 
             }
         },
     ]
 })
 
+
 router.beforeEach(async (to, from, next) => {
+
     try {
+        //routs available only for loggined users
         await TokenService.checkToken()
-        
-        if (to.matched.some(record => record.meta.requiresAuth)) {
+
+        const isAdmin = await Role.checkRole();
+
+        if (to.matched.some(record => record.meta.admin && record.meta.moderator)) {
+
             next()
-        } else if (to.matched.some(record => record.meta.guest)) {
-            next('/app')
-        } else if (to.matched.some(record => record.meta.isAdmin)){
-            if(await Role.checkRole() === true){
-                next();
-            }
+
+        } else if (to.matched.some(record => record.meta.admin && !record.meta.moderator)) {
+
+            if(isAdmin)
+                next()
             else{
-                next('/403'); // TODO: in a future paste in next() page with gendalf becouse moderators have not access to some pages
+                next('/403')
             }
+        } else if (to.matched.some(record => !record.meta.admin && record.meta.moderator)) {
+
+            if(!isAdmin)
+
+                next()
+
+            else{
+
+                next('/dashboard')
+            }
+        } else {
+
+            next('/dashboard')
+
         }
+
     } catch (error) {
-        if (to.matched.some(record => record.meta.requiresAuth)) {           
+
+         //routs available only for loggined guests
+
+        if (to.matched.some(record => record.meta.admin || record.meta.moderator)) {           
+
             next('/login')
+
         } else if (to.matched.some(record => record.meta.guest)) {
+
             if (to.name === 'home') {
-                next('/login')
+                next('/login') //workaround for home page, maybe home page will be lending page in feature
             }
+
             next();
         }
     }
