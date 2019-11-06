@@ -13,7 +13,7 @@
                 <li>
                     <ul class="subList subList">
                         <li class="subList-item">Premium</li>
-                        <li class="subList-item">Banned</li>
+                        <li class="subList-item"><a :href="bannedUsersLink">Banned</a></li>
                     </ul>
                 </li>
             </ul>
@@ -58,7 +58,8 @@
 export default {
     data: function(){
         return{
-            moderatorsLink: 'http://localhost:8081/moderators'
+            moderatorsLink: 'http://localhost:8081/moderators',
+            bannedUsersLink: 'http://localhost:8081/baned-users'
         }
     }
 };

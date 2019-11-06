@@ -22,12 +22,12 @@
                       label: '#',
                   },
                   {
-                      id: 'nickname',
-                      label: 'Nick name',
+                      id: 'user_id',
+                      label: 'User ID',
                   },
                   {
-                      id: 'ban',
-                      label: 'Banned by',
+                      id: 'banned_by',
+                      label: 'By Moderator',
                   },
                   {
                       id: 'ban_start',
@@ -52,7 +52,6 @@
             BannedService.getAllBanned()
             .then((banned) => {
                 this.rows = banned;
-                // How get bans ?
             })
             .catch((err) => {
                 throw new Error(err);
