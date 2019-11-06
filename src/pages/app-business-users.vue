@@ -9,33 +9,33 @@
 <script>
     import AppLayout from "@/components/dashboard/app-layout";
     import AppTable from "@/components/table/table-layout.vue";
-    import BannedService from '../services/banned.user.service';
+    import BusinessService from '../services/business.user';
 
 
     export default {
-        name: "app-baned-users",
+        name: "app-business-users",
         data() {
           return {
               cols: [
                   {
-                      id: 'user_id',
-                      label: 'User ID',
+                      id: 'id',
+                      label: 'Id',
                   },
                   {
-                      id: 'banned_by',
-                      label: 'By Moderator',
+                      id: 'nickname',
+                      label: 'Nick Name',
                   },
                   {
-                      id: 'ban_start',
-                      label: 'From',
+                      id: 'name',
+                      label: 'Name',
                   },
                   {
-                      id: 'ban_end',
-                      label: 'To',
+                      id: 'surname',
+                      label: 'Surname',
                   },
                   {
-                      id: 'reason',
-                      label: 'Reason',
+                      id: 'email',
+                      label: 'Email',
                   }
               ],
               rows: []
@@ -45,9 +45,9 @@
 
         },
         created() {
-            BannedService.getAllBanned()
-            .then((banned) => {
-                this.rows = banned;
+            BusinessService.getAllBusiness()
+            .then((business) => {
+                this.rows = business;
             })
             .catch((err) => {
                 throw new Error(err);
