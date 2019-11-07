@@ -12,9 +12,9 @@
                 <li class="navList-heading">Users</li>
                 <li>
                     <ul class="subList subList">
-                        <li class="subList-item">Premium</li>
-                        <li class="subList-item"><a :href="bannedUsersLink">Banned</a></li>
-                          <li class="subList-item"><a :href="businessUsersLink">Business</a></li>
+                        <li class="subList-item"><a class="link">Premiun</a></li>
+                        <li class="subList-item"><a class="link" :href="bannedUsersLink">Banned</a></li>
+                          <li class="subList-item"><a class="link" :href="businessUsersLink">Business</a></li>
                     </ul>
                 </li>
             </ul>
@@ -24,8 +24,8 @@
                 <li class="navList-heading">Places</li>
                 <li>
                     <ul class="subList subList">
-                        <li class="subList-item">On Review</li>
-                        <li class="subList-item">Approved</li>
+                        <li class="subList-item"><a class="link">On Rewiew</a></li>
+                        <li class="subList-item"><a class="link">Approved</a></li>
                     </ul>
                 </li>
             </ul>
@@ -35,8 +35,8 @@
                 <li class="navList-heading">Reports</li>
                 <li>
                     <ul class="subList subList">
-                        <li class="subList-item">Places</li>
-                        <li class="subList-item">Users</li>
+                        <li class="subList-item"><a class="link">Places</a></li>
+                        <li class="subList-item"><a class="link">Users</a></li>
                     </ul>
                 </li>
             </ul>
@@ -46,8 +46,8 @@
                 <li class="navList-heading">Tools</li>
                 <li>
                     <ul class="subList subList">
-                        <li class="subList-item"><a :href="moderatorsLink">Moderators</a></li>
-                        <li class="subList-item">Logs</li>
+                        <li class="subList-item"><a class="link" :href="moderatorsLink">Moderators</a></li>
+                        <li class="subList-item"><a class="link">Logs</a></li>
                     </ul>
                 </li>
             </ul>

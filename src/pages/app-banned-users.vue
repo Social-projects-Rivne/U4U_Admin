@@ -23,7 +23,7 @@
                   },
                   {
                       id: 'moderator_email',
-                      label: 'Moderator Email',
+                      label: 'Banned by',
                   },
                   {
                       id: 'ban_start',
@@ -42,7 +42,7 @@
           }
         },
         methods: {
-            
+
         },
         created() {
             BannedService.getAllBanned()
