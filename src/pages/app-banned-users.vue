@@ -18,12 +18,12 @@
           return {
               cols: [
                   {
-                      id: 'user_id',
-                      label: 'User ID',
+                      id: 'user_email',
+                      label: 'User email',
                   },
                   {
-                      id: 'banned_by',
-                      label: 'By Moderator',
+                      id: 'moderator_email',
+                      label: 'Moderator Email',
                   },
                   {
                       id: 'ban_start',
@@ -42,7 +42,7 @@
           }
         },
         methods: {
-
+            
         },
         created() {
             BannedService.getAllBanned()
