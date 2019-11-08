@@ -10,6 +10,7 @@ import Role from '../services/check.role';
 import RecoveryPassword from '../pages/recovery-password-page/recovery-password-page.vue'
 import AccessDeniedPage from '../pages/403-page/403-page.vue'
 import { TokenService } from '../services/token.service.js'
+import AllUsers from '../pages/app-allUsers'
 
 Vue.use(VueRouter)
 
@@ -94,6 +95,17 @@ const router = new VueRouter({
                 guest: false,
                 admin: true,
                 moderator: false
+            }
+        },
+        {
+            path: '/users',
+            name: 'users',
+            component: AllUsers,
+
+            meta: {
+                guest: false,
+                admin: true,
+                moderator: true
             }
         },
         {

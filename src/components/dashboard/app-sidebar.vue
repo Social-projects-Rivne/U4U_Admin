@@ -59,6 +59,7 @@ export default {
     data: function(){
         return{
             moderatorsLink: 'http://localhost:8081/moderators'
+            // await to megre banned users 
         }
     }
 };
