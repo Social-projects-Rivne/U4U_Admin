@@ -23,7 +23,7 @@
                   },
                   {
                       id: 'nickname',
-                      label: 'Nick Name',
+                      label: 'Nickname',
                   },
                   {
                       id: 'name',
