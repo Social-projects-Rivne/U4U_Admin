@@ -1,6 +1,6 @@
 import RequestService from './request.service';
 
-const BusinessService = {
+const UserService = {
     async getAllBusiness(){
         try{
             const response = await RequestService.get('/api/business');
@@ -9,7 +9,16 @@ const BusinessService = {
         catch(error){
             throw new Error(error);
         }
+    },
+    async getAllBanned(){
+        try{
+            const response = await RequestService.get('/api/banned-users');
+            return response;
+        }
+        catch(error){
+            throw new Error(error);
+        }
     }
 };
 
-export default BusinessService;
+export default UserService;

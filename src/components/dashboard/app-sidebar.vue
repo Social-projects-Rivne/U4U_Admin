@@ -12,7 +12,6 @@
                 <li class="navList-heading">Users</li>
                 <li>
                     <ul class="subList subList">
-                        <li class="subList-item"><a class="link">Premiun</a></li>
                         <li class="subList-item"><a class="link" :href="bannedUsersLink">Banned</a></li>
                           <li class="subList-item"><a class="link" :href="businessUsersLink">Business</a></li>
                     </ul>
@@ -24,7 +23,7 @@
                 <li class="navList-heading">Places</li>
                 <li>
                     <ul class="subList subList">
-                        <li class="subList-item"><a class="link">On Rewiew</a></li>
+                        <li class="subList-item"><a class="link">On Review</a></li>
                         <li class="subList-item"><a class="link">Approved</a></li>
                     </ul>
                 </li>

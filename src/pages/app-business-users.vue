@@ -9,7 +9,7 @@
 <script>
     import AppLayout from "@/components/dashboard/app-layout";
     import AppTable from "@/components/table/table-layout.vue";
-    import BusinessService from '../services/business.user';
+    import UserService from '../services/user.service';
 
 
     export default {
@@ -45,7 +45,7 @@
 
         },
         created() {
-            BusinessService.getAllBusiness()
+            UserService.getAllBusiness()
             .then((business) => {
                 this.rows = business;
             })

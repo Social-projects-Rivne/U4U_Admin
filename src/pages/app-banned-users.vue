@@ -9,7 +9,7 @@
 <script>
     import AppLayout from "@/components/dashboard/app-layout";
     import AppTable from "@/components/table/table-layout.vue";
-    import BannedService from '../services/banned.user.service';
+    import UserService from '../services/user.service';
 
 
     export default {
@@ -45,7 +45,7 @@
 
         },
         created() {
-            BannedService.getAllBanned()
+            UserService.getAllBanned()
             .then((banned) => {
                 this.rows = banned;
             })
