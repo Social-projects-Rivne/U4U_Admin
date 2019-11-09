@@ -10,7 +10,6 @@
     import AppLayout from "@/components/dashboard/app-layout";
     import AppTable from "@/components/table/table-layout.vue";
     import UserService from '../services/user.service';
-import userService from '../services/user.service';
 
 
     export default {
@@ -46,7 +45,7 @@ import userService from '../services/user.service';
           
         },
         created() {
-            userService.getAllUsers()
+            UserService.getAllUsers()
             .then((users) => {
                 this.rows = users;
             })
