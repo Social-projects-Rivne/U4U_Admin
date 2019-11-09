@@ -218,17 +218,14 @@ a {
         transition: all 0.4s ease-in-out;
 
         &-item {
-            padding: 8px;
+            //padding: 8px;
             text-transform: capitalize;
-            padding: 8px 30px;
             color: $color-sidebar-text;
              a{
                 color: $color-sidebar-text;
+                display: block;
+                padding: 10px 30px;
              }
-
-            &:first-child {
-                padding-top: 15px;
-            }
 
             &:hover {
                 background-color: $color-logo-profile-bg;
