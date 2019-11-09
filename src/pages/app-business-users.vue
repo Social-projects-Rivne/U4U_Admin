@@ -13,29 +13,29 @@
 
 
     export default {
-        name: "app-baned-users",
+        name: "app-business-users",
         data() {
           return {
               cols: [
                   {
-                      id: 'user_email',
-                      label: 'User email',
+                      id: 'id',
+                      label: 'Id',
                   },
                   {
-                      id: 'moderator_email',
-                      label: 'Banned by',
+                      id: 'nickname',
+                      label: 'Nickname',
                   },
                   {
-                      id: 'ban_start',
-                      label: 'From',
+                      id: 'name',
+                      label: 'Name',
                   },
                   {
-                      id: 'ban_end',
-                      label: 'To',
+                      id: 'surname',
+                      label: 'Surname',
                   },
                   {
-                      id: 'reason',
-                      label: 'Reason',
+                      id: 'email',
+                      label: 'Email',
                   }
               ],
               rows: []
@@ -45,9 +45,9 @@
 
         },
         created() {
-            UserService.getAllBanned()
-            .then((banned) => {
-                this.rows = banned;
+            UserService.getAllBusiness()
+            .then((business) => {
+                this.rows = business;
             })
             .catch((err) => {
                 throw new Error(err);
