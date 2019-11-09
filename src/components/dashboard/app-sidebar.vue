@@ -59,10 +59,10 @@
 export default {
     data: function(){
         return{
-            moderatorsLink: 'http://localhost:8081/moderators',
-            bannedUsersLink: 'http://localhost:8081/baned-users',
-            businessUsersLink: 'http://localhost:8081/business-users',
-            usersLink: 'http://localhost:8081/users'
+            moderatorsLink: process.env.VUE_APP_INNER_PATH + '/moderators',
+            bannedUsersLink: process.env.VUE_APP_INNER_PATH + '/baned-users',
+            businessUsersLink: process.env.VUE_APP_INNER_PATH + '/business-users',
+            usersLink: process.env.VUE_APP_INNER_PATH + '/users'
         }
     }
 };
