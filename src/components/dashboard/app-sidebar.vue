@@ -12,6 +12,7 @@
                 <li class="navList-heading">Users</li>
                 <li>
                     <ul class="subList subList">
+                        <li class="subList-item"><a class="link" :href="usersLink">Users</a></li>
                         <li class="subList-item"><a class="link" :href="bannedUsersLink">Banned</a></li>
                         <li class="subList-item"><a class="link" :href="businessUsersLink">Business</a></li>
                     </ul>
@@ -60,7 +61,8 @@ export default {
         return{
             moderatorsLink: 'http://localhost:8081/moderators',
             bannedUsersLink: 'http://localhost:8081/baned-users',
-            businessUsersLink: 'http://localhost:8081/business-users'
+            businessUsersLink: 'http://localhost:8081/business-users',
+            usersLink: 'http://localhost:8081/users'
         }
     }
 };
