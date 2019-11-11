@@ -7,6 +7,7 @@ import Dashboard from '../pages/dashboard-page/dashboard-page.vue';
 import Moderators from '../pages/app-moderators';
 import BannedUsers from '../pages/app-banned-users';
 import BusinessUsers from '../pages/app-business-users';
+import UserReviews from '../pages/app-user-reviews';
 import Role from '../services/check.role';
 import RecoveryPassword from '../pages/recovery-password-page/recovery-password-page.vue'
 import AccessDeniedPage from '../pages/403-page/403-page.vue'
@@ -79,6 +80,17 @@ const router = new VueRouter({
             path: '/baned-users',
             name: 'baned-users',
             component: BannedUsers,
+
+            meta: { 
+                guest: false,
+                admin: true,
+                moderator: true
+            }
+        },
+        {
+            path: '/user-reviews',
+            name: 'user-reviews',
+            component: UserReviews,
 
             meta: { 
                 guest: false,
