@@ -25,6 +25,7 @@
                 <li>
                     <ul class="subList subList">
                         <li class="subList-item"><a class="link">On Review</a></li>
+                        <li class="subList-item"><a class="link" :href="userReviews">Users reviews</a></li>
                         <li class="subList-item"><a class="link">Approved</a></li>
                     </ul>
                 </li>
@@ -62,7 +63,8 @@ export default {
             moderatorsLink: process.env.VUE_APP_INNER_PATH + '/moderators',
             bannedUsersLink: process.env.VUE_APP_INNER_PATH + '/baned-users',
             businessUsersLink: process.env.VUE_APP_INNER_PATH + '/business-users',
-            usersLink: process.env.VUE_APP_INNER_PATH + '/users'
+            usersLink: process.env.VUE_APP_INNER_PATH + '/users',
+            userReviews: process.env.VUE_APP_INNER_PATH + '/user-reviews'
         }
     }
 };
