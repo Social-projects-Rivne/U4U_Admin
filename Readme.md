@@ -38,3 +38,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 1. Create `.env` in root directory
 1. Set environment constant for requests to server `VUE_APP_PRODUCTION_PATH = http://localhost:8080/admin`
+1. Set url on links `VUE_APP_INNER_PATH = 'http://localhost:8081'` 
