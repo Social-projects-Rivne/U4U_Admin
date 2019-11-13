@@ -11,6 +11,7 @@ import Role from '../services/check.role';
 import RecoveryPassword from '../pages/recovery-password-page/recovery-password-page.vue'
 import AccessDeniedPage from '../pages/403-page/403-page.vue'
 import { TokenService } from '../services/token.service.js'
+import CreateModerator from '../pages/create-moderator';
 
 Vue.use(VueRouter)
 
@@ -104,6 +105,17 @@ const router = new VueRouter({
 
             meta: {
                 guest: false,
+                admin: true,
+                moderator: false
+            }
+        },
+        {
+            path: '/create-moderator',
+            name: 'create-moderator',
+            component: CreateModerator,
+
+            meta: {
+                guest: true,
                 admin: true,
                 moderator: false
             }

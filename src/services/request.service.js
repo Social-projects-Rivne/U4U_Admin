@@ -25,13 +25,16 @@ const RequestService = {
         }
     },
 
-    async post(url, body, headers) {
+    async post(url, body) {
+        const accessToken = await TokenService.checkToken();
         try {
             const response = await fetch(process.env.VUE_APP_PRODUCTION_PATH + url, {
                 method: 'POST',
-                headers: headers,
+                headers: {
+                    Authorization: accessToken
+                },
                 body: JSON.stringify(body)
-            })
+            });
 
             if (response.ok) {
                 return await response.json()
