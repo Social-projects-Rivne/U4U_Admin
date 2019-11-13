@@ -44,8 +44,12 @@
      <span>{{ errors[0] }}</span>
    </ValidationProvider>
   </div>
-  <input type="file" id="file" ref="myFiles" @change="previewFiles">
-  <button @click="submit" class="submit">Create</button>
+  <p v-if="err">something has gone terribly wrong</p>
+  <p v-if="created">Moderator {{ name }} has been created successfully</p>
+  <div class="submit-buttons">
+   <input type="file" id="file" ref="myFiles" @change="processFile">
+   <button @click="submit" class="submit">Create</button>
+  </div>
  </app-layout>
 </template>
 
@@ -95,6 +99,8 @@
                     type: 'text',
                 }
             ],
+            created: false,
+            err: false,
             file: '',
             surname: '',
             name: '',
@@ -106,21 +112,38 @@
         }),
 
         methods: {
+
+            processFile(event) {
+                this.avatar = event.target.files[0]
+            },
+
          previewFiles() {
              this.file = this.$refs.myFiles.files[0]
          },
          submit() {
-             this.$validator.validateAll().then(() => {
-                 console.log(1);
-             }).catch(() => {
-                 console.log(2);
-             });
+             const formData = new FormData();
+             formData.append('avatar',this.avatar);
+
+             formData.append('name', this.name);
+             formData.append('surname', this.surname);
+             formData.append('nickname', this.nickname);
+             formData.append('email', this.email);
+             formData.append('password', this.password);
+             formData.append('birth_date', this.birth_date);
+
+
+             createModerator(formData).then(res => {
+                     this.created = true;
+                 }).catch(err => {
+                     this.err = true;
+                 })
          },
             handleChange(e) {
                 const name = e.target.name;
                 const value = e.target.value;
-                console.log(name);
                 this[name] = value;
+                this.err = false;
+                this.created = false;
             }
         },
 
@@ -152,5 +175,10 @@
  .inp-wrapper {
   display: flex;
   flex-direction: column;
+ }
+
+ .submit-buttons {
+  display: flex;
+  justify-content: center;
  }
 </style>
