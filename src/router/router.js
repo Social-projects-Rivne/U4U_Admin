@@ -128,14 +128,6 @@ const router = new VueRouter({
             component: CreateModerator,
 
             meta: {
-                guest: true,
-                admin: true,
-                moderator: false
-            path: '/users',
-            name: 'users',
-            component: AllUsers,
-
-            meta: {
                 guest: false,
                 admin: true,
                 moderator: true
