@@ -12,8 +12,9 @@
                 <li class="navList-heading">Users</li>
                 <li>
                     <ul class="subList subList">
+                        <li class="subList-item"><a class="link" :href="usersLink">Users</a></li>
                         <li class="subList-item"><a class="link" :href="bannedUsersLink">Banned</a></li>
-                          <li class="subList-item"><a class="link" :href="businessUsersLink">Business</a></li>
+                        <li class="subList-item"><a class="link" :href="businessUsersLink">Business</a></li>
                     </ul>
                 </li>
             </ul>
@@ -24,6 +25,7 @@
                 <li>
                     <ul class="subList subList">
                         <li class="subList-item"><a class="link">On Review</a></li>
+                        <li class="subList-item"><a class="link" :href="userReviews">Users reviews</a></li>
                         <li class="subList-item"><a class="link">Approved</a></li>
                     </ul>
                 </li>
@@ -58,9 +60,11 @@
 export default {
     data: function(){
         return{
-            moderatorsLink: 'http://localhost:8081/moderators',
-            bannedUsersLink: 'http://localhost:8081/baned-users',
-            businessUsersLink: 'http://localhost:8081/business-users'
+            moderatorsLink: process.env.VUE_APP_INNER_PATH + '/moderators',
+            bannedUsersLink: process.env.VUE_APP_INNER_PATH + '/baned-users',
+            businessUsersLink: process.env.VUE_APP_INNER_PATH + '/business-users',
+            usersLink: process.env.VUE_APP_INNER_PATH + '/users',
+            userReviews: process.env.VUE_APP_INNER_PATH + '/user-reviews'
         }
     }
 };

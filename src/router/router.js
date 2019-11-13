@@ -7,11 +7,13 @@ import Dashboard from '../pages/dashboard-page/dashboard-page.vue';
 import Moderators from '../pages/app-moderators';
 import BannedUsers from '../pages/app-banned-users';
 import BusinessUsers from '../pages/app-business-users';
+import UserReviews from '../pages/app-user-reviews';
 import Role from '../services/check.role';
 import RecoveryPassword from '../pages/recovery-password-page/recovery-password-page.vue'
 import AccessDeniedPage from '../pages/403-page/403-page.vue'
 import { TokenService } from '../services/token.service.js'
 import CreateModerator from '../pages/create-moderator';
+import AllUsers from '../pages/app-allUsers'
 
 Vue.use(VueRouter)
 
@@ -88,6 +90,17 @@ const router = new VueRouter({
             }
         },
         {
+            path: '/user-reviews',
+            name: 'user-reviews',
+            component: UserReviews,
+
+            meta: { 
+                guest: false,
+                admin: true,
+                moderator: true
+            }
+        },
+        {
             path: '/business-users',
             name: 'business-users',
             component: BusinessUsers,
@@ -118,6 +131,14 @@ const router = new VueRouter({
                 guest: true,
                 admin: true,
                 moderator: false
+            path: '/users',
+            name: 'users',
+            component: AllUsers,
+
+            meta: {
+                guest: false,
+                admin: true,
+                moderator: true
             }
         },
         {

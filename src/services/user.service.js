@@ -18,6 +18,24 @@ const UserService = {
         catch(error){
             throw new Error(error);
         }
+    },
+    async getAllUsers(){
+        try{
+            const response = await RequestService.get('/api/allUsers');
+            return response;
+        }
+        catch(error){
+            throw new Error(error);
+        }
+    },
+    async getAllReviews(){
+        try{
+            const response = await RequestService.get('/api/reviews');
+            return response;
+        }
+        catch(error){
+            throw new Error(error);
+        }
     }
 };
 
