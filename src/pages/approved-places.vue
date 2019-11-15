@@ -1,0 +1,65 @@
+<template>
+  <app-layout>
+   <app-table :cols="cols" :rows="rows"></app-table>
+  </app-layout>
+</template>
+
+
+
+<script>
+    import AppLayout from "@/components/dashboard/app-layout";
+    import AppTable from "@/components/table/table-layout.vue";
+    import UserService from '../services/user.service';
+
+
+    export default {
+        name: "user-places",
+        data() {
+          return {
+              cols: [
+                  {
+                      id: 'userEmail',
+                      label: 'Created by',
+                  },
+                  {
+                      id: 'description',
+                      label: 'Description',
+                  },
+                  {
+                      id: 'name',
+                      label: 'Place name',
+                  },
+                  {
+                      id: 'createdAt',
+                      label: 'Created At',
+                  },
+                  {
+                      id: 'btn',
+                      label: 'Button',
+                  }
+              ],
+              rows: []
+          }
+        },
+        methods: {
+
+        },
+        created() {
+            UserService.getNotApprovedPlaces()
+            .then((places) => {
+                this.rows = places;
+            })
+            .catch((err) => {
+                throw new Error(err);
+            })
+        },
+        components: {
+            AppLayout,
+            AppTable
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>
