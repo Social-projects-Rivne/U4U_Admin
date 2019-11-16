@@ -63,12 +63,12 @@ export default {
             const emailIsValid = this.$refs.userEmailInput.validateEmail()
             const passIsValid = this.$refs.userPasswordInput.validatePassword()
             this.$refs.loginButton.startLoading()
-            if(emailIsValid && passIsValid)
-            {
+            if(emailIsValid && passIsValid) {
+
                 try {
-                    const formData = new FormData(e.target)
+                    const formData = new FormData(e.target);
                     const res = await AuthService.login(formData.get('userEmail'), formData.get('userPassword'))
-                    
+
                     if(res) {
                         this.$router
                             .push("app")

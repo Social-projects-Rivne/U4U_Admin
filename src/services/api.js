@@ -1,10 +1,10 @@
-import request from '../services/request.service';
 import axios from 'axios';
-const baseUrl = 'http://localhost:8080/admin/api/';
+axios.defaults.headers.common['Authorization'] = localStorage.getItem('accessToken');
+axios.defaults.baseURL = 'http://localhost:8080/admin/api/';
 
 export const isUnique = async (field, value) =>
-      await axios.post(`${baseUrl}moderator/is-field-unique?field=${field}&value=${value}`);
+      await axios.post(`moderator/is-field-unique?field=${field}&value=${value}`);
 
 export const createModerator = async data =>
-    await axios.post(`${baseUrl}moderator/create`, data);
+    await axios.post(`moderator/create`, data);
 

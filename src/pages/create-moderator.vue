@@ -44,8 +44,8 @@
      <span>{{ errors[0] }}</span>
    </ValidationProvider>
   </div>
-  <p v-if="err">something has gone terribly wrong</p>
-  <p v-if="created">Moderator {{ name }} has been created successfully</p>
+  <p class="error" v-if="err">something has gone terribly wrong</p>
+  <p class="success" v-if="created">Moderator {{ name }} has been created successfully</p>
   <div class="submit-buttons">
    <input type="file" id="file" ref="myFiles" @change="processFile">
    <button @click="submit" class="submit">Create</button>
@@ -180,5 +180,20 @@
  .submit-buttons {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  input {
+   margin-bottom: 3rem;
+  }
+  button {
+   padding: .5rem 1rem;
+   border-radius: 5px;
+   background: floralwhite;
+  }
+ }
+
+ .error, .success {
+  text-align: center;
+  color: antiquewhite
  }
 </style>

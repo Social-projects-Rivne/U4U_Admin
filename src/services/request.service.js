@@ -26,7 +26,7 @@ const RequestService = {
     },
 
     async post(url, body) {
-        const accessToken = await TokenService.checkToken();
+        const accessToken = localStorage.getItem('accessToken');
         try {
             const response = await fetch(process.env.VUE_APP_PRODUCTION_PATH + url, {
                 method: 'POST',
