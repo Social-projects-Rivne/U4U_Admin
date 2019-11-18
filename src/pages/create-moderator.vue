@@ -47,7 +47,8 @@
   <p class="error" v-if="err">something has gone terribly wrong</p>
   <p class="success" v-if="created">Moderator {{ name }} has been created successfully</p>
   <div class="submit-buttons">
-   <input type="file" id="file" ref="myFiles" @change="processFile">
+   <p v-if="fileError">file is too large please pick photo with size up to 3mb</p>
+   <input type="file" accept="image/*" id="file" ref="myFiles" @change="processFile">
    <button @click="submit" class="submit">Create</button>
   </div>
  </app-layout>
@@ -108,7 +109,8 @@
             birth_date: '',
             email: '',
             password: '',
-            avatar: ''
+            avatar: '',
+            fileError: '',
         }),
 
         methods: {
@@ -121,6 +123,15 @@
              this.file = this.$refs.myFiles.files[0]
          },
          submit() {
+
+             if(this.avatar) {
+                 if(this.avatar.size > 3000000){
+                     this.avatar = "";
+                     this.fileError = true;
+                     return;
+                 }
+             }
+
              const formData = new FormData();
              formData.append('avatar',this.avatar);
 
