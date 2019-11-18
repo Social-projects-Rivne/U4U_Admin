@@ -1,6 +1,6 @@
 <template>
   <app-layout>
-    <app-table :cols="cols" :rows="rows"></app-table>
+    <app-table :cols="cols" :rows="rows | sort(search)"></app-table>
   </app-layout>
 </template>
 
@@ -58,8 +58,9 @@ export default {
       return data.filter(el => {
         return (
           el.comment.toLowerCase().includes(search) ||
-          el.place_name.toLowerCase().includes(search) ||
-          el.rating.toLowerCase().includes(search)
+          el.placeName.toLowerCase().includes(search) ||
+          el.rating === (Number(search)) ||
+          el.emailUser.toLowerCase().includes(search)
         );
       });
     }
