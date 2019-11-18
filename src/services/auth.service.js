@@ -15,7 +15,7 @@ const AuthService = {
             const body = {
                 "email": login,
                 "password": password
-            }
+            };
 
 
             const response = await RequestService.post('/login', body, this.getHeaders())
