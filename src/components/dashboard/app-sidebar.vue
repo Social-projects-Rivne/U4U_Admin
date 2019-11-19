@@ -24,7 +24,7 @@
                 <li class="navList-heading">Places</li>
                 <li>
                     <ul class="subList subList">
-                        <li class="subList-item"><a class="link">On Review</a></li>
+                        <li class="subList-item"><a class="link" :href="onReviews">On Review ({{ notApprovePlacesLegth }})</a></li>
                         <li class="subList-item"><a class="link" :href="userReviews">Users reviews</a></li>
                         <li class="subList-item"><a class="link">Approved</a></li>
                     </ul>
@@ -56,6 +56,7 @@
     </aside>
 </template>
 <script>
+import userService from '../../services/user.service';
 
 export default {
     data: function(){
@@ -64,8 +65,22 @@ export default {
             bannedUsersLink: process.env.VUE_APP_INNER_PATH + '/baned-users',
             businessUsersLink: process.env.VUE_APP_INNER_PATH + '/business-users',
             usersLink: process.env.VUE_APP_INNER_PATH + '/users',
-            userReviews: process.env.VUE_APP_INNER_PATH + '/user-reviews'
+            userReviews: process.env.VUE_APP_INNER_PATH + '/user-reviews',
+            onReviews: process.env.VUE_APP_INNER_PATH + '/approve-places',
+            notApprovePlacesLegth: null
         }
+    },
+    methods: {
+
+    },
+    created() {
+        userService.getNotApprovedPlaces()
+            .then((places) => {
+                this.notApprovePlacesLegth = places.length
+            })
+            .catch((err) => {
+                throw new Error(err);
+            })
     }
 };
 </script>
