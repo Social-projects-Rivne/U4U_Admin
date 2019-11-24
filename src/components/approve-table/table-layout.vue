@@ -5,12 +5,19 @@
                 <thead>
                     <tr>
                      <th v-for="item in cols" :key="item.id">{{item.label}}</th>
+                     <th>Reject</th>
                      <th>Approve</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="row in (filteredList)" :key="row.id">
                         <td v-for="col in cols" :key="col.id" >{{row[col.id]}}</td>
+                        <td>
+                            <form>
+                                <input type="text" placeholder="Reject reason" required />
+                                <input type="submit"  value="Reject" />
+                            </form>
+                        </td>
                         <td><input type="button" @click="onclick(row.id, $event)" value="Approve" /></td>
                     </tr>
                 </tbody>

@@ -15,6 +15,7 @@
                         <li class="subList-item"><a class="link" :href="usersLink">Users</a></li>
                         <li class="subList-item"><a class="link" :href="bannedUsersLink">Banned</a></li>
                         <li class="subList-item"><a class="link" :href="businessUsersLink">Business</a></li>
+                        <li class="subList-item"><a class="link" :href="userReviews">Users reviews</a></li>
                     </ul>
                 </li>
             </ul>
@@ -25,8 +26,8 @@
                 <li>
                     <ul class="subList subList">
                         <li class="subList-item"><a class="link" :href="onReviews">On Review ({{ notApprovePlacesLegth }})</a></li>
-                        <li class="subList-item"><a class="link" :href="userReviews">Users reviews</a></li>
                         <li class="subList-item"><a class="link">Approved</a></li>
+                        <li class="subList-item"><a class="link">Rejected</a></li>
                     </ul>
                 </li>
             </ul>

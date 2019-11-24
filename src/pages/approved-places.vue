@@ -29,10 +29,6 @@
                       id: 'name',
                       label: 'Place name',
                   },
-                  {
-                      id: 'createdAt',
-                      label: 'Created At',
-                  },
               ],
               rows: []
           }
