@@ -12,7 +12,8 @@ import Role from '../services/check.role';
 import RecoveryPassword from '../pages/recovery-password-page/recovery-password-page.vue'
 import AccessDeniedPage from '../pages/403-page/403-page.vue'
 import { TokenService } from '../services/token.service.js'
-import approvedPlaces from '../pages/approved-places';
+import ApprovePlaces from '../pages/approve-places';
+import ApprovedPlaces from '../pages/approved-places';
 import AllUsers from '../pages/app-allUsers'
 
 Vue.use(VueRouter)
@@ -92,7 +93,18 @@ const router = new VueRouter({
         {
             path: '/approve-places',
             name: 'approve-places',
-            component: approvedPlaces,
+            component: ApprovePlaces,
+
+            meta: { 
+                guest: false,
+                admin: true,
+                moderator: true
+            }
+        },
+        {
+            path: '/approved-places',
+            name: 'approved-places',
+            component: ApprovedPlaces,
 
             meta: { 
                 guest: false,

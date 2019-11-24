@@ -62,6 +62,15 @@ const UserService = {
         catch(error){
             throw new Error(error);
         }
+    },
+    async getApprovedPlaces(){
+        try{
+            const response = await RequestService.get('/api/approved-places');
+            return response;
+        }
+        catch(error){
+            throw new Error(error);
+        }
     }
 };
 
