@@ -71,6 +71,15 @@ const UserService = {
         catch(error){
             throw new Error(error);
         }
+    },
+    async getRejectedPlaces(){
+        try{
+            const response = await RequestService.get('/api/rejected-places');
+            return response;
+        }
+        catch(error){
+            throw new Error(error);
+        }
     }
 };
 

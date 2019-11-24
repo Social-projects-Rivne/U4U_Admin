@@ -8,12 +8,12 @@
 
 <script>
     import AppLayout from "@/components/dashboard/app-layout";
-    import AppTable from "@/components/approve-table/table-layout.vue";
+    import AppTable from "@/components/table/table-layout.vue";
     import UserService from '../services/user.service';
 
 
     export default {
-        name: "approved-places",
+        name: "rejected-places",
         data() {
           return {
               cols: [
@@ -29,6 +29,14 @@
                       id: 'name',
                       label: 'Place name',
                   },
+                   {
+                      id: 'rejectReason',
+                      label: 'Reject reason',
+                  },
+                   {
+                      id: 'moderateBy',
+                      label: 'Moderated By',
+                  },
               ],
               rows: []
           }
@@ -37,7 +45,7 @@
 
         },
         created() {
-            UserService.getNotApprovedPlaces()
+            UserService.getRejectedPlaces()
             .then((places) => {
                 this.rows = places;
             })

@@ -27,7 +27,7 @@
                     <ul class="subList subList">
                         <li class="subList-item"><a class="link" :href="onReviews">On Review ({{ notApprovePlacesLegth }})</a></li>
                         <li class="subList-item"><a class="link" :href="approvedPlaces">Approved</a></li>
-                        <li class="subList-item"><a class="link">Rejected</a></li>
+                        <li class="subList-item"><a class="link" :href="rejectedPlaces">Rejected</a></li>
                     </ul>
                 </li>
             </ul>
@@ -69,6 +69,7 @@ export default {
             userReviews: process.env.VUE_APP_INNER_PATH + '/user-reviews',
             onReviews: process.env.VUE_APP_INNER_PATH + '/approve-places',
             approvedPlaces: process.env.VUE_APP_INNER_PATH + '/approved-places',
+            rejectedPlaces: process.env.VUE_APP_INNER_PATH + '/rejected-places',
             notApprovePlacesLegth: null
         }
     },
