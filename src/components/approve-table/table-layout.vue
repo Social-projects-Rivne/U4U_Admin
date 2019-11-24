@@ -14,8 +14,8 @@
                         <td v-for="col in cols" :key="col.id" >{{row[col.id]}}</td>
                         <td>
                             <form>
-                                <input type="text" placeholder="Reject reason" required />
-                                <input type="submit"  value="Reject" />
+                                <input type="text" placeholder="Reject reason" name="reason" @input="handleValue($event)" required />
+                                <input type="submit"  value="Reject" @click="onSubmith($event, row.id)" />
                             </form>
                         </td>
                         <td><input type="button" @click="onclick(row.id, $event)" value="Approve" /></td>
@@ -47,6 +47,7 @@ export default {
     },
     data: () => ({
         currentPage: 1,
+        reason: ''
     }),
     methods: {
         nextPage: function() {
@@ -61,6 +62,13 @@ export default {
             if(event.target.value === 'Approve'){
                 event.target.value = 'Approved'
             }
+        },
+        onSubmith: function(event, rowId){
+            event.preventDefault();
+            console.log(`On Sumbith, id ===  ${rowId}, reason: ${this.reason}`);
+        },
+        handleValue: function(event){
+            this.reason = event.target.value;
         }
     },
     computed: {
