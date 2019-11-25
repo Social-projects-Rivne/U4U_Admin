@@ -69,7 +69,6 @@ export default {
                 return;
             }
             event.target.value = 'Rejected';
-            console.log(`PlaceId = ${rowId}, reason = ${this.reason}`);
             await  UserService.putRejectPlace(rowId, this.reason);
             this.reason = '';
         },
