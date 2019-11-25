@@ -64,8 +64,12 @@ export default {
             }
         },
         onSubmith: function(event, rowId){
+            if(this.reason === ''){
+                return;
+            }
             event.preventDefault();
             console.log(`On Sumbith, id ===  ${rowId}, reason: ${this.reason}`);
+            this.reason = '';
         },
         handleValue: function(event){
             this.reason = event.target.value;
