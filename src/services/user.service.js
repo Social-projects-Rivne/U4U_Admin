@@ -80,6 +80,24 @@ const UserService = {
         catch(error){
             throw new Error(error);
         }
+    },
+    async putRejectPlace(placeId, reason){
+        try{
+            const body = {
+                placeId: placeId,
+                reason, reason
+            }
+            const token = TokenService.getToken();
+            const headers = {
+                Authorization: token,
+                'Content-Type': 'application/json'
+            }
+            const response = await RequestService.put('/api/reject', body, headers);
+            console.log(response);
+        }
+        catch(error){
+            throw new Error(error);
+        }
     }
 };
 

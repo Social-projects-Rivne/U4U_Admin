@@ -37,6 +37,7 @@
 
 <script>
 import UserService from '../../services/user.service';
+import { async } from 'q';
 
 export default {
     name: "table-layout",
@@ -63,12 +64,12 @@ export default {
                 event.target.value = 'Approved'
             }
         },
-        onSubmith: function(event, rowId){
+        onSubmith: async function(event, rowId){
             if(this.reason === ''){
                 return;
             }
             event.preventDefault();
-            console.log(`On Sumbith, id ===  ${rowId}, reason: ${this.reason}`);
+            await  UserService.putRejectPlace(rowId, this.reason);
             this.reason = '';
         },
         handleValue: function(event){
