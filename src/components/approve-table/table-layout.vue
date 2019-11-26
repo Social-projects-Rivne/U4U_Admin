@@ -14,7 +14,7 @@
                         <td v-for="col in cols" :key="col.id" >{{row[col.id]}}</td>
                         <td>
                             <form>
-                                <input type="text" placeholder="Reject reason"  name="reason" @input="handleValue($event)" required />
+                                <input type="text" placeholder="Reject reason" class='reasonInput'  name="reason" @input="handleValue($event)" required />
                                 <input type="submit" class="rejectBtn"  value="Reject" @click="onSubmith($event, row.id)" />
                             </form>
                         </td>
@@ -68,9 +68,11 @@ export default {
             if(this.reason === ''){
                 return;
             }
+            event.preventDefault();
             event.target.value = 'Rejected';
             await  UserService.putRejectPlace(rowId, this.reason);
             this.reason = '';
+            document.querySelector('.reasonInput').value = '';
         },
         handleValue: function(event){
             this.reason = event.target.value;

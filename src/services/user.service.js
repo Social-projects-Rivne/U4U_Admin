@@ -93,7 +93,6 @@ const UserService = {
                 'Content-Type': 'application/json'
             }
             const response = await RequestService.put('/api/reject', body, headers);
-            console.log(response);
         }
         catch(error){
             throw new Error(error);
