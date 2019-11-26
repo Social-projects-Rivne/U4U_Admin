@@ -65,7 +65,7 @@ export default {
             }
         },
         onSubmith: async function(event, rowId){
-            if(this.reason === ''){
+            if(!this.reason){
                 return;
             }
             event.preventDefault();
