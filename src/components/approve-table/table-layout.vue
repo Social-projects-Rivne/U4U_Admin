@@ -18,7 +18,7 @@
                                 <input type="submit" class="rejectBtn"  value="Reject" @click="onSubmith($event, row.id)" />
                             </form>
                         </td>
-                        <td><input type="button" @click="onclick(row.id, $event)" value="Approve" /></td>
+                        <td><input type="button" @click="onclick(row.id, $event)" class='approveBtn' value="Approve" /></td>
                     </tr>
                 </tbody>
             </table>
@@ -72,7 +72,9 @@ export default {
             event.target.value = 'Rejected';
             await  UserService.putRejectPlace(rowId, this.reason);
             this.reason = '';
-            document.querySelector('.reasonInput').value = '';
+            document.querySelector('.reasonInput').style.display = 'none';
+            document.querySelector('.approveBtn').style.display = 'none';
+            event.target.style.marginLeft = '0px';
         },
         handleValue: function(event){
             this.reason = event.target.value;
