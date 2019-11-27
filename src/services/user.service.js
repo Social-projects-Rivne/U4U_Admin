@@ -85,14 +85,14 @@ const UserService = {
         try{
             const body = {
                 placeId: placeId,
-                reason, reason
+                reason: reason
             }
             const token = TokenService.getToken();
             const headers = {
                 Authorization: token,
                 'Content-Type': 'application/json'
             }
-            const response = await RequestService.put('/api/reject', body, headers);
+            await RequestService.put('/api/reject', body, headers);
         }
         catch(error){
             throw new Error(error);
