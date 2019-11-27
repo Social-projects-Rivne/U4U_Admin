@@ -72,9 +72,6 @@ export default {
             event.target.value = 'Rejected';
             await  UserService.putRejectPlace(rowId, this.reason);
             this.reason = '';
-            document.querySelector('.reasonInput').style.display = 'none';
-            document.querySelector('.approveBtn').style.display = 'none';
-            event.target.style.marginLeft = '0px';
         },
         handleValue: function(event){
             this.reason = event.target.value;
