@@ -5,13 +5,20 @@
                 <thead>
                     <tr>
                      <th v-for="item in cols" :key="item.id">{{item.label}}</th>
+                     <th>Reject</th>
                      <th>Approve</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="row in (filteredList)" :key="row.id">
                         <td v-for="col in cols" :key="col.id" >{{row[col.id]}}</td>
-                        <td><input type="button" @click="onclick(row.id, $event)" value="Approve" /></td>
+                        <td>
+                            <form>
+                                <input type="text" placeholder="Reject reason" class='reasonInput'  name="reason" @input="handleValue($event)" required />
+                                <input type="submit" class="rejectBtn"  value="Reject" @click="onSubmith($event, row.id)" />
+                            </form>
+                        </td>
+                        <td><input type="button" @click="onclick(row.id, $event)" class='approveBtn' value="Approve" /></td>
                     </tr>
                 </tbody>
             </table>
@@ -29,7 +36,8 @@
 </template>
 
 <script>
-import UserService from '../../services/user.service';
+import PlacesService from '../../services/places.servise';
+import { async } from 'q';
 
 export default {
     name: "table-layout",
@@ -40,6 +48,7 @@ export default {
     },
     data: () => ({
         currentPage: 1,
+        reason: ''
     }),
     methods: {
         nextPage: function() {
@@ -50,10 +59,22 @@ export default {
             if (this.currentPage > 1) this.currentPage--;
         },
         onclick: async function(id, event){
-            await UserService.ApprovePlace(id);
+            await PlacesService.ApprovePlace(id);
             if(event.target.value === 'Approve'){
                 event.target.value = 'Approved'
             }
+        },
+        onSubmith: async function(event, rowId){
+            if(!this.reason){
+                return;
+            }
+            event.preventDefault();
+            event.target.value = 'Rejected';
+            await  PlacesService.putRejectPlace(rowId, this.reason);
+            this.reason = '';
+        },
+        handleValue: function(event){
+            this.reason = event.target.value;
         }
     },
     computed: {

@@ -13,7 +13,7 @@
 
 
     export default {
-        name: "user-places",
+        name: "rejected-places",
         data() {
           return {
               cols: [
@@ -22,21 +22,21 @@
                       label: 'Created by',
                   },
                   {
+                      id: 'description',
+                      label: 'Description',
+                  },
+                  {
                       id: 'name',
                       label: 'Place name',
                   },
-                  {
-                    id: 'description',
-                    label: 'Description'  
+                   {
+                      id: 'rejectReason',
+                      label: 'Reject reason',
                   },
-                  {
-                      id: 'createdAt',
-                      label: 'Created At',
-                  },
-                  {
+                   {
                       id: 'moderateBy',
-                      label: 'Moderated by'
-                  }
+                      label: 'Moderated By',
+                  },
               ],
               rows: []
           }
@@ -45,7 +45,7 @@
 
         },
         created() {
-            PlacesService.getApprovedPlaces()
+            PlacesService.getRejectedPlaces()
             .then((places) => {
                 this.rows = places;
             })

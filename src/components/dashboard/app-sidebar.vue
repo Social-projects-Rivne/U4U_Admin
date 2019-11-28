@@ -15,6 +15,7 @@
                         <li class="subList-item"><a class="link" :href="usersLink">Users</a></li>
                         <li class="subList-item"><a class="link" :href="bannedUsersLink">Banned</a></li>
                         <li class="subList-item"><a class="link" :href="businessUsersLink">Business</a></li>
+                        <li class="subList-item"><a class="link" :href="userReviews">Users reviews</a></li>
                     </ul>
                 </li>
             </ul>
@@ -25,8 +26,8 @@
                 <li>
                     <ul class="subList subList">
                         <li class="subList-item"><a class="link" :href="onReviews">On Review ({{ notApprovePlacesLegth }})</a></li>
-                        <li class="subList-item"><a class="link" :href="userReviews">Users reviews</a></li>
-                        <li class="subList-item"><a class="link">Approved</a></li>
+                        <li class="subList-item"><a class="link" :href="approvedPlaces">Approved</a></li>
+                        <li class="subList-item"><a class="link" :href="rejectedPlaces">Rejected</a></li>
                     </ul>
                 </li>
             </ul>
@@ -67,6 +68,8 @@ export default {
             usersLink: process.env.VUE_APP_INNER_PATH + '/users',
             userReviews: process.env.VUE_APP_INNER_PATH + '/user-reviews',
             onReviews: process.env.VUE_APP_INNER_PATH + '/approve-places',
+            approvedPlaces: process.env.VUE_APP_INNER_PATH + '/approved-places',
+            rejectedPlaces: process.env.VUE_APP_INNER_PATH + '/rejected-places',
             notApprovePlacesLegth: null
         }
     },
