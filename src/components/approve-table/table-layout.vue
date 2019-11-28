@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import UserService from '../../services/user.service';
+import PlacesService from '../../services/places.servise';
 import { async } from 'q';
 
 export default {
@@ -59,7 +59,7 @@ export default {
             if (this.currentPage > 1) this.currentPage--;
         },
         onclick: async function(id, event){
-            await UserService.ApprovePlace(id);
+            await PlacesService.ApprovePlace(id);
             if(event.target.value === 'Approve'){
                 event.target.value = 'Approved'
             }
@@ -70,7 +70,7 @@ export default {
             }
             event.preventDefault();
             event.target.value = 'Rejected';
-            await  UserService.putRejectPlace(rowId, this.reason);
+            await  PlacesService.putRejectPlace(rowId, this.reason);
             this.reason = '';
         },
         handleValue: function(event){

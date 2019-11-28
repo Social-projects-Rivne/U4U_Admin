@@ -9,7 +9,7 @@
 <script>
     import AppLayout from "@/components/dashboard/app-layout";
     import AppTable from "@/components/table/table-layout.vue";
-    import UserService from '../services/user.service';
+    import PlacesService from '../services/places.servise';
 
 
     export default {
@@ -45,7 +45,7 @@
 
         },
         created() {
-            UserService.getApprovedPlaces()
+            PlacesService.getApprovedPlaces()
             .then((places) => {
                 this.rows = places;
             })
