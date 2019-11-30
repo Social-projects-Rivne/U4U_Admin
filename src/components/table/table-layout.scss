@@ -1,56 +1,64 @@
 .content-table {
-    border-collapse: collapse;
-    margin: 25px;
-    font-size: 0.9em;
-    min-width: 400px;
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-collapse: collapse;
+  margin: 25px;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .content-table thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
-    font-weight: bold;
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
 }
 
 .content-table th,
 .content-table td {
-    padding: 12px 15px;
-    width: 25%;
+  padding: 12px 15px;
+  width: 25%;
 }
 
 .content-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-    text-align: left;
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
 }
 
 .content-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+  background-color: #f3f3f3;
 }
+
+.content-table tbody td.content-table-error {
+  display: block;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  width: 100%;
+}
+
 .button-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .button-left,
 .button-right {
-    align-content: center;
-    height: 25px;
-    width: 135px;
-    margin: 5px;
+  align-content: center;
+  height: 25px;
+  width: 135px;
+  margin: 5px;
 }
 
 th {
-    cursor: pointer;
-    width: 500px;
-    white-space: nowrap;
+  cursor: pointer;
+  width: 500px;
+  white-space: nowrap;
 }
 tr {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 .main {
-    padding-top: 1rem;
+  padding-top: 1rem;
 }

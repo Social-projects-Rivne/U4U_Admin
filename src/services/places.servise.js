@@ -1,43 +1,7 @@
 import RequestService from './request.service';
 import { TokenService } from './token.service';
 
-const UserService = {
-    async getAllBusiness(){
-        try{
-            const response = await RequestService.get('/api/business');
-            return response;
-        }
-        catch(error){
-            throw new Error(error);
-        }
-    },
-    async getAllBanned(){
-        try{
-            const response = await RequestService.get('/api/banned-users');
-            return response;
-        }
-        catch(error){
-            throw new Error(error);
-        }
-    },
-    async getAllUsers(){
-        try{
-            const response = await RequestService.get('/api/allUsers');
-            return response;
-        }
-        catch(error){
-            throw new Error(error);
-        }
-    },
-    async getAllReviews(){
-        try{
-            const response = await RequestService.get('/api/reviews');
-            return response;
-        }
-        catch(error){
-            throw new Error(error);
-        }
-    },
+const PlacesService = {
     async getNotApprovedPlaces(){
         try{
             const response = await RequestService.get('/api/approve-places');
@@ -100,4 +64,4 @@ const UserService = {
     }
 };
 
-export default UserService;
+export default PlacesService;

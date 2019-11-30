@@ -11,269 +11,306 @@ $height-header: 50px;
 $width-sidebar: 240px;
 
 @mixin profile-avatar {
-    background-image: url('https://davidgerard.co.uk/blockchain/wp-content/uploads/2018/03/ryan-gosling-kevin-belanger.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+  background-image: url("https://davidgerard.co.uk/blockchain/wp-content/uploads/2018/03/ryan-gosling-kevin-belanger.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 @mixin box-shadow {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 // Resets
 html,
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 // Util classes
 .text-light {
-    font-weight: 900;
-    color: $color-logo-profile-text-text;
+  font-weight: 900;
+  color: $color-logo-profile-text-text;
 }
 
 .text-bold {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .row {
-    display: flex;
+  display: flex;
 
-    &--align-v-center {
-        align-items: center;
-    }
+  &--align-v-center {
+    align-items: center;
+  }
 
-    &--align-h-center {
-        justify-content: center;
-    }
+  &--align-h-center {
+    justify-content: center;
+  }
 }
 
 .grid {
-    position: relative;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: $height-header 1fr;
-    grid-template-areas:
-        'header'
-        'main';
-    height: 100vh;
-    overflow-x: hidden;
+  position: relative;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: $height-header 1fr;
+  grid-template-areas:
+    "header"
+    "main";
+  height: 100vh;
+  overflow-x: hidden;
 
-    &--noscroll {
-        overflow-y: scroll;
-    }
+  &--noscroll {
+    overflow-y: scroll;
+  }
 }
 
 .header {
-    grid-area: header;
-    align-items: center;
-    justify-content: left;
-    background-color: $color-header-bg;
+  grid-area: header;
+  align-items: center;
+  justify-content: left;
+  background-color: $color-header-bg;
 
-    &-menu {
-        position: fixed;
-        padding: 13px;
-        left: 12px;
-        background-color: $color-sidebar-text;
-        border-radius: 50%;
-        z-index: 1;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-    &-search {
-        margin-left: 55px;
-        font-size: 20px;
-        color: $color-header-text;
-    }
-
-    &-input {
-        border: none;
-        background: transparent;
-        padding: 12px;
-        font-size: 20px;
-        color: $color-header-text;
-
-        &:focus {
-            outline: none;
-            border: none;
-        }
-    }
-}
-
-.sidebar {
+  &-menu {
     position: fixed;
-    grid-area: sidebar;
+    padding: 13px;
+    left: 12px;
+    background-color: $color-sidebar-text;
+    border-radius: 50%;
+    z-index: 1;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &-search {
+    color: $color-header-text;
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    margin-left: 55px;   
     height: 100%;
-    overflow-y: auto;
-    background-color: $color-sidebar;
-    color: $color-sidebar-text;
-    width: $width-sidebar;
-    transform: translateX(-245px);
-    transition: all 0.6s ease-in-out;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
-    z-index: 2;
+  }
 
-    &-brand {
-        position: relative;
-        display: flex;
-        align-items: center;
-        padding: 0 16px;
-        height: $height-header;
-        background-color: $color-sidebar;
+  &-input {
+    border: none;
+    background: transparent;
+    margin-right: 1rem;
+    padding: 12px;
+    font-size: 20px;
+    color: $color-header-text;
+    height: calc(100% - 24px);
+    width: 100%;
+
+    &:focus {
+      outline: none;
+      border: none;
     }
-    &-close {
-        position: absolute;
-        right: 8px;
-        top: 8px;
-        visibility: visible;
-        color: $color-transparent;
-        cursor: pointer;
-    }
-    &-profile {
-        display: flex;
-        align-items: center;
-        min-height: 90px;
-        background-color: $color-logo-profile-bg;
+  }
 
-        &-avatar {
-            @include profile-avatar;
-            height: 64px;
-            width: 64px;
-            margin: 0 15px;
-        }
+  &-button {
+    background-color: $color-logo-profile-bg;
+    border: none;
+    border-radius: .5rem;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: .8rem;
+    font-weight: 700;
+    margin: .5rem 1rem .5rem 0;
+    padding: 0 1.5rem;
+    text-transform: uppercase;
 
-        &-title {
-            font-size: 17px;
-            letter-spacing: 1px;
-        }
-    }
-}
-
-.navList {
-    width: $width-sidebar;
-    padding: 0;
-    margin: 0;
-    background-color: $color-sidebar;
-    list-style-type: none;
-
-    &-heading {
-        position: relative;
-        display: flex;
-        align-items: center;
-        vertical-align: middle;
-        justify-content: space-between;
-        padding: 9px 16px 9px;
-        color: $color-transparent;
-        text-transform: uppercase;
-        font-size: 15px;
+    &:not(:first-of-type) {
+      margin: .5rem 3rem .5rem 0;
     }
 
-    &-title {
-        margin: 0 15px;
-    }
-
-    &:after {
-        position: absolute;
-        height: 6px;
-        width: 6px;
-        top: 17px;
-        right: 25px;
-        border-left: 1px solid $color-transparent;
-        border-bottom: 1px solid $color-transparent;
-        transform: rotate(225deg);
-        transition: all 0.2s;
+    & svg {
+      margin-right: .5rem;
     }
 
     &:hover {
-        background-color: lighten($color-sidebar, 3%);
+      box-shadow: 0 0 .5rem $color-sidebar;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.sidebar {
+  position: fixed;
+  grid-area: sidebar;
+  height: 100%;
+  overflow-y: auto;
+  background-color: $color-sidebar;
+  color: $color-sidebar-text;
+  width: $width-sidebar;
+  transform: translateX(-245px);
+  transition: all 0.6s ease-in-out;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+
+  &-brand {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    height: $height-header;
+    background-color: $color-sidebar;
+  }
+  &-close {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    visibility: visible;
+    color: $color-transparent;
+    cursor: pointer;
+  }
+  &-profile {
+    display: flex;
+    align-items: center;
+    min-height: 90px;
+    background-color: $color-logo-profile-bg;
+
+    &-avatar {
+      @include profile-avatar;
+      height: 64px;
+      width: 64px;
+      margin: 0 15px;
+    }
+
+    &-title {
+      font-size: 17px;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+.navList {
+  width: $width-sidebar;
+  padding: 0;
+  margin: 0;
+  background-color: $color-sidebar;
+  list-style-type: none;
+
+  &-heading {
+    position: relative;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    justify-content: space-between;
+    padding: 9px 16px 9px;
+    color: $color-transparent;
+    text-transform: uppercase;
+    font-size: 15px;
+  }
+
+  &-title {
+    margin: 0 15px;
+  }
+
+  &:after {
+    position: absolute;
+    height: 6px;
+    width: 6px;
+    top: 17px;
+    right: 25px;
+    border-left: 1px solid $color-transparent;
+    border-bottom: 1px solid $color-transparent;
+    transform: rotate(225deg);
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    background-color: lighten($color-sidebar, 3%);
+    cursor: pointer;
+  }
+
+  &--open {
+    background-color: lighten($color-sidebar, 3%);
+
+    &:after {
+      transform: rotate(315deg);
+    }
+  }
+
+  .subList {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    background-color: darken($color-sidebar, 3%);
+    visibility: visible;
+    overflow: hidden;
+    max-height: 200px;
+    transition: all 0.4s ease-in-out;
+
+    &-item {
+      //padding: 8px;
+      text-transform: capitalize;
+      color: $color-sidebar-text;
+      a {
+        color: $color-sidebar-text;
+        display: block;
+        padding: 10px 30px;
+      }
+
+      &:hover {
+        background-color: $color-logo-profile-bg;
         cursor: pointer;
+      }
     }
 
-    &--open {
-        background-color: lighten($color-sidebar, 3%);
-
-        &:after {
-            transform: rotate(315deg);
-        }
+    &--hidden {
+      visibility: hidden;
+      max-height: 0;
     }
-
-    .subList {
-        padding: 0;
-        margin: 0;
-        list-style-type: none;
-        background-color: darken($color-sidebar, 3%);
-        visibility: visible;
-        overflow: hidden;
-        max-height: 200px;
-        transition: all 0.4s ease-in-out;
-
-        &-item {
-            //padding: 8px;
-            text-transform: capitalize;
-            color: $color-sidebar-text;
-             a{
-                color: $color-sidebar-text;
-                display: block;
-                padding: 10px 30px;
-             }
-
-            &:hover {
-                background-color: $color-logo-profile-bg;
-                cursor: pointer;
-            }
-        }
-
-        &--hidden {
-            visibility: hidden;
-            max-height: 0;
-        }
-    }
+  }
 }
 
 .main {
-    grid-area: main;
-    background-color: $color-main-bg;
+  grid-area: main;
+  background-color: $color-main-bg;
 }
 
 @media only screen and (min-width: 46.875em) {
-    .grid {
-        display: grid;
-        grid-template-columns: $width-sidebar calc(100% - 240px);
-        grid-template-rows: $height-header 1fr;
-        grid-template-areas:
-            'sidebar header'
-            'sidebar main';
-        height: 100vh;
-    }
+  .grid {
+    display: grid;
+    grid-template-columns: $width-sidebar calc(100% - 240px);
+    grid-template-rows: $height-header 1fr;
+    grid-template-areas:
+      "sidebar header"
+      "sidebar main";
+    height: 100vh;
+  }
 
-    .sidebar {
-        position: relative;
-        transform: translateX(0);
+  .sidebar {
+    position: relative;
+    transform: translateX(0);
 
-        &-brand-close {
-            visibility: hidden;
-        }
+    &-brand-close {
+      visibility: hidden;
     }
+  }
 
-    .main-header {
-        &-intro-wrapper {
-            padding: 0 30px;
-        }
+  .main-header {
+    &-intro-wrapper {
+      padding: 0 30px;
     }
+  }
 
-    .header {
-        &-menu {
-            display: none;
-        }
+  .header {
+    &-menu {
+      display: none;
     }
+  }
 }

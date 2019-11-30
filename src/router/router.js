@@ -13,6 +13,9 @@ import RecoveryPassword from '../pages/recovery-password-page/recovery-password-
 import AccessDeniedPage from '../pages/403-page/403-page.vue'
 import { TokenService } from '../services/token.service.js'
 import CreateModerator from '../pages/create-moderator';
+import ApprovePlaces from '../pages/approve-places';
+import ApprovedPlaces from '../pages/approved-places';
+import RejectedPlaces from '../pages/rejected-places';
 import AllUsers from '../pages/app-allUsers'
 
 Vue.use(VueRouter)
@@ -82,6 +85,39 @@ const router = new VueRouter({
             path: '/baned-users',
             name: 'baned-users',
             component: BannedUsers,
+
+            meta: { 
+                guest: false,
+                admin: true,
+                moderator: true
+            }
+        },
+        {
+            path: '/approve-places',
+            name: 'approve-places',
+            component: ApprovePlaces,
+
+            meta: { 
+                guest: false,
+                admin: true,
+                moderator: true
+            }
+        },
+        {
+            path: '/approved-places',
+            name: 'approved-places',
+            component: ApprovedPlaces,
+
+            meta: { 
+                guest: false,
+                admin: true,
+                moderator: true
+            }
+        },
+        {
+            path: '/rejected-places',
+            name: 'rejected-places',
+            component: RejectedPlaces,
 
             meta: { 
                 guest: false,

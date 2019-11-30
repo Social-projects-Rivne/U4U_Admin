@@ -44,9 +44,23 @@ const RequestService = {
         }
     },
 
-    async put(resource, data) {
-        const accessToken = await TokenService.checkToken()
-        //TODO: put
+    async put(url, body, headers) {
+        try {
+            const response = await fetch(process.env.VUE_APP_PRODUCTION_PATH + url, {
+                method: 'PUT',
+                headers: headers,
+                body: JSON.stringify(body)
+            });
+
+            if (response.ok) {
+                return await response.json()
+            } else {
+                const errors = await response.json()
+                throw new Error(JSON.stringify(errors))
+            }
+        } catch (error) {
+            throw new Error(error.message)
+        }
     },
 
     async delete(resource) {

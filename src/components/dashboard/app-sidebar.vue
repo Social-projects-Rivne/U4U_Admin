@@ -15,6 +15,7 @@
                         <li class="subList-item"><a class="link" :href="usersLink">Users</a></li>
                         <li class="subList-item"><a class="link" :href="bannedUsersLink">Banned</a></li>
                         <li class="subList-item"><a class="link" :href="businessUsersLink">Business</a></li>
+                        <li class="subList-item"><a class="link" :href="userReviews">Users reviews</a></li>
                     </ul>
                 </li>
             </ul>
@@ -24,9 +25,9 @@
                 <li class="navList-heading">Places</li>
                 <li>
                     <ul class="subList subList">
-                        <li class="subList-item"><a class="link">On Review</a></li>
-                        <li class="subList-item"><a class="link" :href="userReviews">Users reviews</a></li>
-                        <li class="subList-item"><a class="link">Approved</a></li>
+                        <li class="subList-item"><a class="link" :href="onReviews">On Review ({{ notApprovePlacesLegth }})</a></li>
+                        <li class="subList-item"><a class="link" :href="approvedPlaces">Approved</a></li>
+                        <li class="subList-item"><a class="link" :href="rejectedPlaces">Rejected</a></li>
                     </ul>
                 </li>
             </ul>
@@ -56,6 +57,7 @@
     </aside>
 </template>
 <script>
+import userService from '../../services/user.service';
 
 export default {
     data: function(){
@@ -64,8 +66,24 @@ export default {
             bannedUsersLink: process.env.VUE_APP_INNER_PATH + '/baned-users',
             businessUsersLink: process.env.VUE_APP_INNER_PATH + '/business-users',
             usersLink: process.env.VUE_APP_INNER_PATH + '/users',
-            userReviews: process.env.VUE_APP_INNER_PATH + '/user-reviews'
+            userReviews: process.env.VUE_APP_INNER_PATH + '/user-reviews',
+            onReviews: process.env.VUE_APP_INNER_PATH + '/approve-places',
+            approvedPlaces: process.env.VUE_APP_INNER_PATH + '/approved-places',
+            rejectedPlaces: process.env.VUE_APP_INNER_PATH + '/rejected-places',
+            notApprovePlacesLegth: null
         }
+    },
+    methods: {
+
+    },
+    created() {
+        userService.getNotApprovedPlaces()
+            .then((places) => {
+                this.notApprovePlacesLegth = places.length
+            })
+            .catch((err) => {
+                throw new Error(err);
+            })
     }
 };
 </script>

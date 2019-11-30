@@ -3,33 +3,18 @@
         <i class="header-menu">
             <font-awesome-icon icon="bars" />
         </i>
-        <div class="header-search">
-            <input
-                type="text"
-                class="header-input"
-                v-model="search"
-                placeholder="Search..."
-                @keyup.enter="submit"
-            />
-        </div>
+
+        <searchBar></searchBar>
     </header>
 </template>
 
 <script>
-import { EventBus } from "../../../event-bus.js";
+import searchBar from './app-search.vue'
 
 export default {
     name: "app-header",
-    data() {
-        return {
-            search: ""
-        };
-    },
-    methods: {
-        submit: function() {
-            EventBus.$emit("inputData", this.search);
-            this.search = "";
-        }
+    components: {
+      searchBar,
     }
 };
 </script>

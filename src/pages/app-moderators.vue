@@ -1,71 +1,80 @@
 <template>
   <app-layout>
-   <router-link to="/create-moderator">
-    <button class="btn">Create moderator</button>
-   </router-link>
-   <app-table :cols="cols" :rows="rows"></app-table>
+    <app-table :cols="cols" :rows="rows | sort(search)"></app-table>
   </app-layout>
 </template>
 
-
-
 <script>
-    import AppLayout from "@/components/dashboard/app-layout";
-    import AppTable from "@/components/table/table-layout.vue";
-    import ModeratorService from '../services/moderators.service';
+import AppLayout from "@/components/dashboard/app-layout";
+import AppTable from "@/components/table/table-layout.vue";
+import ModeratorService from "../services/moderators.service";
+import { EventBus } from "../../event-bus.js";
 
-
-    export default {
-        name: "app-moderators",
-        data() {
-          return {
-              cols: [
-                  {
-                      id: 'id',
-                      label: 'Id',
-                  },
-                  {
-                      id: 'nickname',
-                      label: 'Nick name',
-                  },
-                  {
-                      id: 'name',
-                      label: 'Name',
-                  },
-                  {
-                      id: 'surname',
-                      label: 'Surname',
-                  },
-                  {
-                      id: 'email',
-                      label: 'Email',
-                  },
-              ],
-              rows: []
-          }
+export default {
+  name: "app-moderators",
+  data() {
+    return {
+      cols: [
+        {
+          id: "id",
+          label: "Id"
         },
-        methods: {
-          
+        {
+          id: "nickname",
+          label: "Nick name"
         },
-        created() {
-            ModeratorService.getAllModerators()
-            .then((moderators) => {
-                const onlyModerators = moderators.filter((elem) => {
-                    if(elem.is_admin === false){
-                        return elem;
-                    }
-                })
-                this.rows = onlyModerators;
-            })
-            .catch((err) => {
-                throw new Error(err);
-            })
+        {
+          id: "name",
+          label: "Name"
         },
-        components: {
-            AppLayout,
-            AppTable
+        {
+          id: "surname",
+          label: "Surname"
+        },
+        {
+          id: "email",
+          label: "Email"
         }
+      ],
+      rows: [],
+      search: ""
+    };
+  },
+  methods: {},
+  created() {
+    EventBus.$on("inputData", data => {
+      this.search = data.toLowerCase();
+    });
+    ModeratorService.getAllModerators()
+      .then(moderators => {
+        const onlyModerators = moderators.filter(elem => {
+          if (elem.is_admin === false) {
+            return elem;
+          }
+        });
+        this.rows = onlyModerators;
+      })
+      .catch(err => {
+        throw new Error(err);
+      });
+  },
+  filters: {
+    sort(data, search) {
+      return data.filter(el => {
+        return (
+          el.nickname.toLowerCase().includes(search) ||
+          el.name.toLowerCase().includes(search) ||
+          el.surname.toLowerCase().includes(search) ||
+          el.email.toLowerCase().includes(search)
+        );
+      });
     }
+  },
+  components: {
+    AppLayout,
+    AppTable
+  }
+};
 </script>
 
 <style scoped>
