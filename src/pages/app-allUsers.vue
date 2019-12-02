@@ -34,6 +34,9 @@ export default {
         {
           id: "created_at",
           label: "Created at"
+        },
+        {
+          status: "block",
         }
       ],
       rows: [],

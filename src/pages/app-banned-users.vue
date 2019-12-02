@@ -34,6 +34,9 @@ export default {
         {
           id: "reason",
           label: "Reason"
+        },
+         {
+          status: "unblock",
         }
       ],
       rows: [],
