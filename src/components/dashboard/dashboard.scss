@@ -11,7 +11,6 @@ $height-header: 50px;
 $width-sidebar: 240px;
 
 @mixin profile-avatar {
-  background-image: url("https://davidgerard.co.uk/blockchain/wp-content/uploads/2018/03/ryan-gosling-kevin-belanger.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 50%;

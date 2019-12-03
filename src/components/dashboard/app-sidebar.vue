@@ -4,8 +4,8 @@
             <span class="text-light">Ukraine4U</span>
         </div>
         <div class="sidebar-profile">
-            <div class="sidebar-profile-avatar"></div>
-            <div class="sidebar-profile-title text-light">Ryan Gosling</div>
+            <div class="sidebar-profile-avatar" v-bind:style="{ backgroundImage: 'url(' + moderatorAvatar + ')' }"></div>
+            <div class="sidebar-profile-title text-light">{{ moderatorNickname }}</div>
         </div>
         <div class="row row--align-v-center row--align-h-center">
             <ul class="navList">
@@ -58,6 +58,8 @@
 </template>
 <script>
 import userService from '../../services/user.service';
+import moderatorService from '../../services/moderators.service';
+
 
 export default {
     data: function(){
@@ -70,7 +72,9 @@ export default {
             onReviews: process.env.VUE_APP_INNER_PATH + '/approve-places',
             approvedPlaces: process.env.VUE_APP_INNER_PATH + '/approved-places',
             rejectedPlaces: process.env.VUE_APP_INNER_PATH + '/rejected-places',
-            notApprovePlacesLegth: null
+            notApprovePlacesLegth: null,
+            moderatorAvatar: null,
+            moderatorNickname: null
         }
     },
     methods: {
@@ -78,12 +82,21 @@ export default {
     },
     created() {
         userService.getNotApprovedPlaces()
-            .then((places) => {
-                this.notApprovePlacesLegth = places.length
-            })
-            .catch((err) => {
-                throw new Error(err);
-            })
+        .then((places) => {
+            this.notApprovePlacesLegth = places.length
+        })
+        .catch((err) => {
+            throw new Error(err);
+        });
+        moderatorService.getCurrentModerator()
+         .then((moderator) => {
+           const { avatar, nickname } = moderator;
+           this.moderatorAvatar = avatar;
+           this.moderatorNickname = nickname;
+        })
+        .catch((err) => {
+            throw new Error(err);
+        });
     }
 };
 </script>
