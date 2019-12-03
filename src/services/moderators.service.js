@@ -12,8 +12,7 @@ const moderatorService = {
     },
     async getCurrentModerator(){
         try{
-            const response = await RequestService.get('/api/currentModerator');
-            return response;
+            return await RequestService.get('/api/currentModerator');
         }
         catch(error){
             throw new Error(error);
