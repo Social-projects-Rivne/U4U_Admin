@@ -9,6 +9,14 @@ const moderatorService = {
         catch(error){
             throw new Error(error);
         }
+    },
+    async getCurrentModerator(){
+        try{
+            return await RequestService.get('/api/currentModerator');
+        }
+        catch(error){
+            throw new Error(error);
+        }
     }
 };
 

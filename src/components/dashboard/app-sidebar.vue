@@ -4,8 +4,8 @@
             <span class="text-light">Ukraine4U</span>
         </div>
         <div class="sidebar-profile">
-            <div class="sidebar-profile-avatar"></div>
-            <div class="sidebar-profile-title text-light">Ryan Gosling</div>
+            <div class="sidebar-profile-avatar" v-bind:style="{ backgroundImage: 'url(' + moderatorAvatar + ')' }"></div>
+            <div class="sidebar-profile-title text-light">{{ moderatorNickname }}</div>
         </div>
         <div class="row row--align-v-center row--align-h-center">
             <ul class="navList">
@@ -15,6 +15,7 @@
                         <li class="subList-item"><a class="link" :href="usersLink">Users</a></li>
                         <li class="subList-item"><a class="link" :href="bannedUsersLink">Banned</a></li>
                         <li class="subList-item"><a class="link" :href="businessUsersLink">Business</a></li>
+                        <li class="subList-item"><a class="link" :href="userReviews">Users reviews</a></li>
                     </ul>
                 </li>
             </ul>
@@ -25,8 +26,8 @@
                 <li>
                     <ul class="subList subList">
                         <li class="subList-item"><a class="link" :href="onReviews">On Review ({{ notApprovePlacesLegth }})</a></li>
-                        <li class="subList-item"><a class="link" :href="userReviews">Users reviews</a></li>
-                        <li class="subList-item"><a class="link">Approved</a></li>
+                        <li class="subList-item"><a class="link" :href="approvedPlaces">Approved</a></li>
+                        <li class="subList-item"><a class="link" :href="rejectedPlaces">Rejected</a></li>
                     </ul>
                 </li>
             </ul>
@@ -57,6 +58,8 @@
 </template>
 <script>
 import userService from '../../services/user.service';
+import moderatorService from '../../services/moderators.service';
+
 
 export default {
     data: function(){
@@ -67,7 +70,11 @@ export default {
             usersLink: process.env.VUE_APP_INNER_PATH + '/users',
             userReviews: process.env.VUE_APP_INNER_PATH + '/user-reviews',
             onReviews: process.env.VUE_APP_INNER_PATH + '/approve-places',
-            notApprovePlacesLegth: null
+            approvedPlaces: process.env.VUE_APP_INNER_PATH + '/approved-places',
+            rejectedPlaces: process.env.VUE_APP_INNER_PATH + '/rejected-places',
+            notApprovePlacesLegth: null,
+            moderatorAvatar: null,
+            moderatorNickname: null
         }
     },
     methods: {
@@ -75,12 +82,21 @@ export default {
     },
     created() {
         userService.getNotApprovedPlaces()
-            .then((places) => {
-                this.notApprovePlacesLegth = places.length
-            })
-            .catch((err) => {
-                throw new Error(err);
-            })
+        .then((places) => {
+            this.notApprovePlacesLegth = places.length
+        })
+        .catch((err) => {
+            throw new Error(err);
+        });
+        moderatorService.getCurrentModerator()
+         .then((moderator) => {
+           const { avatar, nickname } = moderator;
+           this.moderatorAvatar = avatar;
+           this.moderatorNickname = nickname;
+        })
+        .catch((err) => {
+            throw new Error(err);
+        });
     }
 };
 </script>
