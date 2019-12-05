@@ -3,7 +3,7 @@ import {TokenService} from './token.service';
  
 const BlockUserService = {
     async blockUser(reason,blockedUserInfo){
-            const body = {
+          const body = {
                 reason,
                 id:blockedUserInfo.id,
                 name:blockedUserInfo.name,
@@ -14,20 +14,18 @@ const BlockUserService = {
                 Authorization: token,
                 'Content-Type': 'application/json'
             }
-            await RequestService.post('/api/block-user', body, headers);
-       
-    },
-    async unblockUser(userInfo){
+            return await RequestService.post('/api/block-user', body, headers);
+     },
+    async unblockUser(id){
         const body = {
-            id: userInfo.user_id
+            id:id
         }
         const token = TokenService.getToken();
         const headers = {
             Authorization: token,
             'Content-Type': 'application/json'
         }
-        await RequestService.post('/api/block-user', body, headers);
-       
+        return await RequestService.post('/api/unblock-users', body, headers);  
     }
 }
 export default BlockUserService;

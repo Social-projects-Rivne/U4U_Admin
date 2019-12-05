@@ -16,7 +16,7 @@
             <td v-for="col in cols" :key="col.id">{{row[col.id]}}</td>
             <td>
             <button v-if="checktheButton(cols)" @click="blockUser(row)" class = 'button-block-user'>Block</button>
-            <button v-else @click="userUnBlock(row)" class = 'button-unblock-user' >Unblock</button>
+            <button v-else @click="userUnBlock(row.user_id)" class = 'button-unblock-user' >Unblock</button>
             </td>
           </tr>
           <tr v-if="showForm">
@@ -77,7 +77,7 @@
 
 <script>
 import BlockUserService from '../../services/block-user.service';
-
+import {EventBus} from '../../../event-bus';
 export default {
   name: "table-layout",
   props: {
@@ -115,10 +115,16 @@ export default {
     this.reason = '';
     this.showForm = false;
     this.submitted=true;
-    await BlockUserService.blockUser(reason, this.blockedUserInfo);
+    const blockedUser = await BlockUserService.blockUser(reason, this.blockedUserInfo);
+    if(blockedUser.id){
+      EventBus.$emit("blockUser", blockedUser.id);
+    }
     },
-    userUnBlock: async function(userInfo){
-    await BlockUserService.unblockUser(userInfo);
+    userUnBlock: async function(id){
+    const unblockedUser =  await BlockUserService.unblockUser(id);
+    if(unblockedUser.id){
+      EventBus.$emit("unblockUser", unblockedUser.id);
+    }
     },
     prevPage: function() {
       if (this.currentPage > 1) this.currentPage--;

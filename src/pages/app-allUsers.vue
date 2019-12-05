@@ -48,6 +48,11 @@ export default {
     EventBus.$on("inputData", data => {
       this.search = data.toLowerCase();
     });
+    EventBus.$on("blockUser", id => {
+      this.rows = this.rows.filter((el)=>{
+       return el.id !== id
+      });
+    });
     UserService.getAllUsers()
       .then(users => {
         this.rows = users;

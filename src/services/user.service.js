@@ -50,7 +50,6 @@ const UserService = {
     },
     async ApprovePlace(id){
         try{
-            debugger
             const body = {
                 id: id
             }
