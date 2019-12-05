@@ -4,21 +4,21 @@
    <ValidationProvider class="inp-wrapper"  rules="required|min:3" v-slot="{ errors }">
     <input
             v-model="name"
-            placeholder="name"
+            placeholder="Name"
             type="text" />
     <span>{{ errors[0] }}</span>
    </ValidationProvider>
    <ValidationProvider class="inp-wrapper"  rules="required|min:3" v-slot="{ errors }">
     <input
             v-model="surname"
-            placeholder="surname"
+            placeholder="Surname"
             type="text" />
     <span>{{ errors[0] }}</span>
    </ValidationProvider>
    <ValidationProvider class="inp-wrapper"  rules="required|min:3|isNickNameUnique" v-slot="{ errors }">
     <input
             v-model="nickname"
-            placeholder="Nick name"
+            placeholder="Nickname"
             type="text" />
     <span>{{ errors[0] }}</span>
    </ValidationProvider>
@@ -32,14 +32,14 @@
    <ValidationProvider class="inp-wrapper"  rules="required|email|isEmailUnique" v-slot="{ errors }">
     <input
             v-model="email"
-            placeholder="E-mail"
+            placeholder="Email"
             type="text" />
     <span>{{ errors[0] }}</span>
    </ValidationProvider>
     <ValidationProvider class="inp-wrapper"  rules="required|min:4" v-slot="{ errors }">
      <input
              v-model="password"
-             placeholder="password"
+             placeholder="Password"
              type="text" />
      <span>{{ errors[0] }}</span>
    </ValidationProvider>
@@ -156,12 +156,13 @@
 
 <style lang="scss" scoped>
  .create-moderators {
-  max-width: 700px;
+  max-width: 800px;
   margin: 0 auto;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
    input {
-    // margin: 1rem;
+    margin: 1.5rem;
    }
  }
  .submit {
@@ -172,8 +173,17 @@
   flex-direction: column;
  }
  .submit-buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   input {
    margin-bottom: 3rem;
+  }
+  button {
+   padding: .5rem 1rem;
+   border-radius: 5px;
+   background: floralwhite;
   }
  }
  .error, .success {
