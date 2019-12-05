@@ -161,7 +161,7 @@
   display: flex;
   flex-wrap: wrap;
    input {
-    margin: 1rem;
+    // margin: 1rem;
    }
  }
  .submit {
@@ -172,17 +172,8 @@
   flex-direction: column;
  }
  .submit-buttons {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
   input {
    margin-bottom: 3rem;
-  }
-  button {
-   padding: .5rem 1rem;
-   border-radius: 5px;
-   background: floralwhite;
   }
  }
  .error, .success {

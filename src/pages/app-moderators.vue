@@ -1,9 +1,9 @@
 <template>
   <app-layout>
-    <app-table :cols="cols" :rows="rows | sort(search)"></app-table>
-    <router-link to="/create-moderator">
+     <router-link to="/create-moderator">
       <button class="btn">Create Moderator</button>
-    </router-link>
+     </router-link>
+    <app-table :cols="cols" :rows="rows | sort(search)"></app-table>
   </app-layout>
 </template>
 
@@ -90,7 +90,8 @@ export default {
   background: darkseagreen;
   color: #fff;
   border-radius: 5px;
-  margin: 1rem 1rem 1rem 1rem;
+  margin-left: 45%;
+  margin-bottom: 1%;
   cursor: pointer;
   border: none;
   font-size: 1rem;
