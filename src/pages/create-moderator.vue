@@ -6,42 +6,42 @@
             v-model="name"
             placeholder="Name"
             type="text" />
-    <span>{{ errors[0] }}</span>
+    <span class="error">{{ errors[0] }}</span>
    </ValidationProvider>
    <ValidationProvider class="inp-wrapper"  rules="required|min:3" v-slot="{ errors }">
     <input
             v-model="surname"
             placeholder="Surname"
             type="text" />
-    <span>{{ errors[0] }}</span>
+    <span class="error">{{ errors[0] }}</span>
    </ValidationProvider>
    <ValidationProvider class="inp-wrapper"  rules="required|min:3|isNickNameUnique" v-slot="{ errors }">
     <input
             v-model="nickname"
             placeholder="Nickname"
             type="text" />
-    <span>{{ errors[0] }}</span>
+    <span class="error">{{ errors[0] }}</span>
    </ValidationProvider>
    <ValidationProvider class="inp-wrapper"  rules="required|date" v-slot="{ errors }">
     <input
             v-model="birth_date"
             placeholder="Birth date"
             type="text" />
-    <span>{{ errors[0] }}</span>
+    <span class="error">{{ errors[0] }}</span>
    </ValidationProvider>
    <ValidationProvider class="inp-wrapper"  rules="required|email|isEmailUnique" v-slot="{ errors }">
     <input
             v-model="email"
             placeholder="Email"
             type="text" />
-    <span>{{ errors[0] }}</span>
+    <span class="error">{{ errors[0] }}</span>
    </ValidationProvider>
     <ValidationProvider class="inp-wrapper"  rules="required|min:4" v-slot="{ errors }">
      <input
              v-model="password"
              placeholder="Password"
              type="text" />
-     <span>{{ errors[0] }}</span>
+     <span class="error">{{ errors[0] }}</span>
    </ValidationProvider>
   </div>
   <p class="error" v-if="err">something has gone terribly wrong</p>
@@ -159,10 +159,10 @@
   max-width: 800px;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
    input {
-    margin: 1.5rem;
+    margin: 1rem;
    }
  }
  .submit {
@@ -177,17 +177,22 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  input {
-   margin-bottom: 3rem;
-  }
   button {
+    margin-top: 10px;
    padding: .5rem 1rem;
    border-radius: 5px;
    background: floralwhite;
   }
  }
- .error, .success {
-  text-align: center;
-  color: antiquewhite
- }
+ .error{
+    text-align: left;
+    margin-left: 8%;
+    color: salmon;
+}
+.success{
+    text-align: center;
+    color: antiquewhite;
+}
+
+  
 </style> 
