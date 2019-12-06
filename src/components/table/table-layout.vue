@@ -29,8 +29,7 @@
                  <textarea
                  required
                  v-model="reason"
-                 cols="100"
-                 rows="5"
+                 rows="2"
                  placeholder = 'Because of...'
                  class="add-blocking-reason-description">
                   </textarea>

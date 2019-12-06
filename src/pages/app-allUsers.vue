@@ -16,10 +16,6 @@ export default {
     return {
       cols: [
         {
-          id: "id",
-          label: "Id"
-        },
-        {
           id: "name",
           label: "Name"
         },
