@@ -76,7 +76,7 @@
 
 <script>
 import BlockUserService from '../../services/block-user.service';
-import {EventBus} from '../../../event-bus';
+import { EventBus } from '../../../event-bus';
 export default {
   name: "table-layout",
   props: {
@@ -95,9 +95,9 @@ export default {
   }),
   methods: {
     blockUser:function(blockedUserInfo){
-      this.blockedUserInfo=blockedUserInfo;
-      this.showForm=!this.showForm,
-      this.submitted=false,
+      this.blockedUserInfo = blockedUserInfo;
+      this.showForm = !this.showForm,
+      this.submitted = false,
       this.userName = blockedUserInfo.name;
       this.userSurname = blockedUserInfo.surname
      
@@ -107,13 +107,13 @@ export default {
         this.currentPage++;
     },
     cancelBlocking:function(){
-      this.showForm=false;
-      this.reason='';
+      this.showForm = false;
+      this.reason = '';
    },
     userBlock: async function(reason){
       this.reason = '';
       this.showForm = false;
-      this.submitted=true;
+      this.submitted = true;
       const blockedUser = await BlockUserService.blockUser(reason, this.blockedUserInfo);
       if(blockedUser.id){
         EventBus.$emit("blockUser", blockedUser.id);
