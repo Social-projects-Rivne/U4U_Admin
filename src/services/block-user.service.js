@@ -6,7 +6,6 @@ const BlockUserService = {
         const body = {
             reason,
             id:blockedUserInfo.id,
-            name:blockedUserInfo.name,
             ban_start: Date.now()
             }
             const token = TokenService.getToken();
