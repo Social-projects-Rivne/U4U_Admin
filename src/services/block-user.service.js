@@ -1,13 +1,13 @@
 import RequestService from './request.service';
-import {TokenService} from './token.service';
+import { TokenService } from './token.service';
  
 const BlockUserService = {
-    async blockUser(reason,blockedUserInfo){
-          const body = {
-                reason,
-                id:blockedUserInfo.id,
-                name:blockedUserInfo.name,
-                ban_start: Date.now()
+    async blockUser(reason, blockedUserInfo){
+        const body = {
+            reason,
+            id:blockedUserInfo.id,
+            name:blockedUserInfo.name,
+            ban_start: Date.now()
             }
             const token = TokenService.getToken();
             const headers = {

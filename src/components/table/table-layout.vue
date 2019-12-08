@@ -106,29 +106,29 @@ export default {
       if (this.currentPage * this.pageSize < this.rows.length)
         this.currentPage++;
     },
-   cancelBlocking:function(){
-     this.showForm=false;
-     this.reason='';
+    cancelBlocking:function(){
+      this.showForm=false;
+      this.reason='';
    },
     userBlock: async function(reason){
-    this.reason = '';
-    this.showForm = false;
-    this.submitted=true;
-    const blockedUser = await BlockUserService.blockUser(reason, this.blockedUserInfo);
-    if(blockedUser.id){
-      EventBus.$emit("blockUser", blockedUser.id);
+      this.reason = '';
+      this.showForm = false;
+      this.submitted=true;
+      const blockedUser = await BlockUserService.blockUser(reason, this.blockedUserInfo);
+      if(blockedUser.id){
+        EventBus.$emit("blockUser", blockedUser.id);
     }
     },
     userUnBlock: async function(id){
-    const unblockedUser =  await BlockUserService.unblockUser(id);
-    if(unblockedUser.id){
-      EventBus.$emit("unblockUser", unblockedUser.id);
+      const unblockedUser =  await BlockUserService.unblockUser(id);
+      if(unblockedUser.id){
+        EventBus.$emit("unblockUser", unblockedUser.id);
     }
     },
     prevPage: function() {
       if (this.currentPage > 1) this.currentPage--;
     },
-      checktheButton:function(arr) { 
+    checktheButton:function(arr) { 
       return arr.some((element) => element.status == "block") 
     }
   },
