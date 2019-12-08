@@ -15,7 +15,6 @@ const UserService = {
         try{
             const response = await RequestService.get('/api/banned-users');
             return response;
-            
         }
         catch(error){
             throw new Error(error);

@@ -86,10 +86,10 @@ export default {
   },
   data: () => ({
     currentPage: 1,
-    showForm:false,
+    showForm: false,
     reason:'',
-    submitted:false,
-    blockedUserInfo:null,
+    submitted: false,
+    blockedUserInfo: null,
     userName:'',
     userSurname:''
   }),
