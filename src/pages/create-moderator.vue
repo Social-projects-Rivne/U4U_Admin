@@ -1,10 +1,12 @@
 <template>
  <app-layout>
-  <div class="create-moderators">
+  <form>
+      <div class="create-moderators">
    <ValidationProvider class="inp-wrapper"  rules="required|min:3" v-slot="{ errors }">
     <input
             v-model="name"
             placeholder="Name"
+            required
             type="text" />
     <span class="error">{{ errors[0] }}</span>
    </ValidationProvider>
@@ -12,6 +14,7 @@
     <input
             v-model="surname"
             placeholder="Surname"
+            required
             type="text" />
     <span class="error">{{ errors[0] }}</span>
    </ValidationProvider>
@@ -19,6 +22,7 @@
     <input
             v-model="nickname"
             placeholder="Nickname"
+            required
             type="text" />
     <span class="error">{{ errors[0] }}</span>
    </ValidationProvider>
@@ -26,6 +30,7 @@
     <input
             v-model="birth_date"
             placeholder="Birth date"
+            required
             type="text" />
     <span class="error">{{ errors[0] }}</span>
    </ValidationProvider>
@@ -33,6 +38,7 @@
     <input
             v-model="email"
             placeholder="Email"
+            required
             type="text" />
     <span class="error">{{ errors[0] }}</span>
    </ValidationProvider>
@@ -40,6 +46,7 @@
      <input
              v-model="password"
              placeholder="Password"
+             required
              type="text" />
      <span class="error">{{ errors[0] }}</span>
    </ValidationProvider>
@@ -50,6 +57,7 @@
    <p v-if="fileError">file is too large please pick photo with size up to 3mb</p>
    <button @click="submit" class="submit">Create</button>
   </div>
+  </form>
  </app-layout>
 </template>
 
@@ -185,7 +193,7 @@
   }
  }
  .error{
-    text-align: left;
+    text-align: center;
     margin-left: 8%;
     color: salmon;
 }
