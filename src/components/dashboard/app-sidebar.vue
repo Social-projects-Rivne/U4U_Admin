@@ -2,6 +2,7 @@
     <aside class="sidebar">
         <div class="sidebar-brand">
             <span class="text-light">Ukraine4U</span>
+            <logout-button/>
         </div>
         <div class="sidebar-profile">
             <div class="sidebar-profile-avatar" v-bind:style="{ backgroundImage: 'url(' + moderatorAvatar + ')' }"></div>
@@ -59,6 +60,7 @@
 <script>
 import userService from '../../services/user.service';
 import moderatorService from '../../services/moderators.service';
+import LogoutButton from "../controls/buttons/logout-button/logout-button";
 
 
 export default {
@@ -77,8 +79,8 @@ export default {
             moderatorNickname: null
         }
     },
-    methods: {
-
+    components: {
+        LogoutButton
     },
     created() {
         userService.getNotApprovedPlaces()
@@ -89,10 +91,10 @@ export default {
             throw new Error(err);
         });
         moderatorService.getCurrentModerator()
-         .then((moderator) => {
-           const { avatar, nickname } = moderator;
-           this.moderatorAvatar = avatar;
-           this.moderatorNickname = nickname;
+            .then((moderator) => {
+            const { avatar, nickname } = moderator;
+            this.moderatorAvatar = avatar;
+            this.moderatorNickname = nickname;
         })
         .catch((err) => {
             throw new Error(err);

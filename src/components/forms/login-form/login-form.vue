@@ -71,7 +71,7 @@ export default {
                     
                     if(res) {
                         this.$router
-                            .push("app")
+                            .push("dashboard")
                             .catch(routerErr => {
                                 console.log("Handle router error:", routerErr)
                             })
