@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../pages/home-page/home-page.vue'
-import AppPage from '../pages/app-page/app-page.vue'
 import Login from '../pages/login-page/login-page.vue'
 import Dashboard from '../pages/dashboard-page/dashboard-page.vue';
 import Moderators from '../pages/app-moderators';
@@ -32,17 +31,6 @@ const router = new VueRouter({
                 guest: true,
                 admin: false,
                 moderator: false,
-            }
-        },
-        {
-            path: '/app',
-            name: 'app',
-            component: AppPage,
-
-            meta: {
-                guest: false,
-                admin: true,
-                moderator: true
             }
         },
         {
