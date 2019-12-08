@@ -31,7 +31,7 @@
             v-model="birth_date"
             placeholder="Birth date"
             required
-            type="text" />
+            type="date" />
     <span class="error">{{ errors[0] }}</span>
    </ValidationProvider>
    <ValidationProvider class="inp-wrapper"  rules="required|email|isEmailUnique" v-slot="{ errors }">
