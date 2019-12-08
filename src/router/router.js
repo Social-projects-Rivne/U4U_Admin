@@ -41,8 +41,8 @@ const router = new VueRouter({
 
             meta: {
                 guest: false,
-                admin: true,
-                moderator: true
+                admin: false,
+                moderator: false
             }
         },
         {
