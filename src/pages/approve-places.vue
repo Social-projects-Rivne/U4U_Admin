@@ -40,7 +40,6 @@
             PlacesService.getNotApprovedPlaces()
             .then((places) => {
                 this.rows = places;
-                console.log(places);
             })
             .catch((err) => {
                 throw new Error(err);
