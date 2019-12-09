@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../pages/home-page/home-page.vue'
-import AppPage from '../pages/app-page/app-page.vue'
 import Login from '../pages/login-page/login-page.vue'
 import Dashboard from '../pages/dashboard-page/dashboard-page.vue';
 import Moderators from '../pages/app-moderators';
@@ -15,7 +14,8 @@ import { TokenService } from '../services/token.service.js'
 import ApprovePlaces from '../pages/approve-places';
 import ApprovedPlaces from '../pages/approved-places';
 import RejectedPlaces from '../pages/rejected-places';
-import AllUsers from '../pages/app-allUsers'
+import AllUsers from '../pages/app-allUsers';
+import CreateModerator from '../pages/create-moderator';
 
 Vue.use(VueRouter)
 
@@ -32,17 +32,6 @@ const router = new VueRouter({
                 guest: true,
                 admin: false,
                 moderator: false,
-            }
-        },
-        {
-            path: '/app',
-            name: 'app',
-            component: AppPage,
-
-            meta: {
-                guest: false,
-                admin: true,
-                moderator: true
             }
         },
         {
@@ -179,6 +168,17 @@ const router = new VueRouter({
                 moderator: true 
             }
         },
+        {
+            path: '/create-moderator',
+            name: 'create-moderator',
+            component: CreateModerator,
+
+            meta: {
+                guest: false,
+                admin: true,
+                moderator: false
+            }
+        }
     ]
 })
 
