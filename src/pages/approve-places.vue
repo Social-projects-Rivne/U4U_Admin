@@ -22,8 +22,8 @@
                       label: 'Created by',
                   },
                   {
-                      id: 'description',
-                      label: 'Description',
+                      id: 'createdAt',
+                      label: 'Created at'
                   },
                   {
                       id: 'name',

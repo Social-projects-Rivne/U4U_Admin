@@ -22,10 +22,6 @@
                       label: 'Created by',
                   },
                   {
-                      id: 'description',
-                      label: 'Description',
-                  },
-                  {
                       id: 'name',
                       label: 'Place name',
                   },
