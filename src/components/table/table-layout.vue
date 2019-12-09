@@ -5,18 +5,18 @@
         <thead>
           <tr>
             <th v-for="item in cols" :key="item.id">{{item.label}}</th>
-            <th v-if="checktheButton(cols) == true">
+            <th v-if="checktheButton(cols)">
             Block 
             </th>
-            <th v-else>Unblock</th>
+            <th v-if="checktheButton(cols) == false">Unblock</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="row in (filteredList)" :key="row.id">
             <td v-for="col in cols" :key="col.id">{{row[col.id]}}</td>
-            <td>
+            <td v-if="checktheButton(cols) !== undefined">
             <button v-if="checktheButton(cols)" @click="blockUser(row)" class = 'button-block-user'>Block</button>
-            <button v-else @click="userUnBlock(row.user_id)" class = 'button-unblock-user' >Unblock</button>
+            <button v-if="checktheButton(cols) == false" @click="userUnBlock(row.user_id)" class = 'button-unblock-user' >Unblock</button>
             </td>
           </tr>
           <tr v-if="showForm">
@@ -128,8 +128,20 @@ export default {
     prevPage: function() {
       if (this.currentPage > 1) this.currentPage--;
     },
-    checktheButton:function(arr) { 
-      return arr.some((element) => element.status == "block") 
+    checktheButton:function(arr) {
+      const userStatus = arr.find((el)=>{
+        return el.status;
+      })
+      if(userStatus){
+      if(userStatus.status == "block"){
+        return true;
+      }
+      else if(userStatus.status == "unblock"){
+        return false; 
+      }
+      }
+      else return;
+    
     }
   },
   computed: {
