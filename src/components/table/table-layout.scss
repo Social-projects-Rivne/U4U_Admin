@@ -62,3 +62,56 @@ tr {
 .main {
   padding-top: 1rem;
 }
+.opened {
+  background-color: yellow;
+}
+.add-reason-submit{ 
+  width: 135px;
+  height:25px;
+  border:1px solid #009879;
+  margin-top: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  background-color: #009879;
+  color: white;
+}
+.button-block-user{
+  border:1px solid #009879;
+  width: 90px;
+  cursor: pointer;
+}
+.button-block-user:hover{
+  color: #0c7a64;
+}
+
+.button-unblock-user{
+  border:1px solid #009879;
+  cursor: pointer;
+}
+.button-unblock-user:hover{
+  color: #0c7a64;
+}
+.add-blocking-reason-description{
+  border:1px solid #009879;
+  width:50rem;
+  height: 5rem;
+}
+#block-user{
+  font-size: 1rem;
+  font-weight: bold;
+}
+#user-blocked-img{
+  height: 1.5rem;
+  width:  1.5rem;
+  margin-top: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+#form-icon{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.input-reason-form{
+  text-align: center;
+}

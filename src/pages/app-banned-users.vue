@@ -34,6 +34,9 @@ export default {
         {
           id: "reason",
           label: "Reason"
+        },
+         {
+          status: "unblock",
         }
       ],
       rows: [],
@@ -44,6 +47,11 @@ export default {
   created() {
     EventBus.$on("inputData", data => {
       this.search = data.toLowerCase();
+    });
+     EventBus.$on("unblockUser", id => {
+      this.rows = this.rows.filter((el)=>{
+       return el.user_id !== id
+      });
     });
     UserService.getAllBanned()
       .then(banned => {

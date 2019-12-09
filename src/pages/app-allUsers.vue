@@ -16,10 +16,6 @@ export default {
     return {
       cols: [
         {
-          id: "id",
-          label: "Id"
-        },
-        {
           id: "name",
           label: "Name"
         },
@@ -34,6 +30,9 @@ export default {
         {
           id: "created_at",
           label: "Created at"
+        },
+        {
+          status: "block",
         }
       ],
       rows: [],
@@ -44,6 +43,11 @@ export default {
   created() {
     EventBus.$on("inputData", data => {
       this.search = data.toLowerCase();
+    });
+    EventBus.$on("blockUser", id => {
+      this.rows = this.rows.filter((el)=>{
+       return el.id !== id
+      });
     });
     UserService.getAllUsers()
       .then(users => {
