@@ -33,6 +33,10 @@
                       id: 'moderateBy',
                       label: 'Moderated By',
                   },
+                   {
+                      id: 'createdAt',
+                      label: 'Created at',
+                  },
               ],
               rows: []
           }
