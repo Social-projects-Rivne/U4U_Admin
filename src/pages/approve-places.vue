@@ -22,8 +22,8 @@
                       label: 'Created by',
                   },
                   {
-                      id: 'description',
-                      label: 'Description',
+                      id: 'createdAt',
+                      label: 'Created at'
                   },
                   {
                       id: 'name',
@@ -40,6 +40,7 @@
             PlacesService.getNotApprovedPlaces()
             .then((places) => {
                 this.rows = places;
+                console.log(places);
             })
             .catch((err) => {
                 throw new Error(err);

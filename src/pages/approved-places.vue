@@ -26,10 +26,6 @@
                       label: 'Place name',
                   },
                   {
-                    id: 'description',
-                    label: 'Description'  
-                  },
-                  {
                       id: 'createdAt',
                       label: 'Created At',
                   },
