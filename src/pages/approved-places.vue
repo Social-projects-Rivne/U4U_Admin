@@ -30,6 +30,10 @@
                       label: 'Created At',
                   },
                   {
+                      id: 'updateAt',
+                      label: 'Update At'
+                  },
+                  {
                       id: 'moderateBy',
                       label: 'Moderated by'
                   }
