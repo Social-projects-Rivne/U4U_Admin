@@ -38,7 +38,7 @@
                 <li class="navList-heading">Reports</li>
                 <li>
                     <ul class="subList subList">
-                        <li class="subList-item"><a class="link">Places</a></li>
+                        <li class="subList-item"><a class="link" :href="reportPlaces">Places</a></li>
                         <li class="subList-item"><a class="link">Users</a></li>
                     </ul>
                 </li>
@@ -74,6 +74,7 @@ export default {
             onReviews: process.env.VUE_APP_INNER_PATH + '/approve-places',
             approvedPlaces: process.env.VUE_APP_INNER_PATH + '/approved-places',
             rejectedPlaces: process.env.VUE_APP_INNER_PATH + '/rejected-places',
+            reportPlaces: process.env.VUE_APP_INNER_PATH + '/reports',
             notApprovePlacesLegth: null,
             moderatorAvatar: null,
             moderatorNickname: null

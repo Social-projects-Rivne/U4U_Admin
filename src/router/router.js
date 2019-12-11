@@ -16,6 +16,7 @@ import ApprovedPlaces from '../pages/approved-places';
 import RejectedPlaces from '../pages/rejected-places';
 import AllUsers from '../pages/app-allUsers';
 import CreateModerator from '../pages/create-moderator';
+import Reports from '../pages/app-reports';
 
 Vue.use(VueRouter)
 
@@ -177,6 +178,17 @@ const router = new VueRouter({
                 guest: false,
                 admin: true,
                 moderator: false
+            }
+        },
+        {
+            path: '/reports',
+            name: 'reports',
+            component: Reports,
+
+            meta: {
+                guest: false,
+                admin: true,
+                moderator: true
             }
         }
     ]
